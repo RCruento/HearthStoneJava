@@ -1,6 +1,3 @@
-package application;
-import java.io.*;
-
 /**
 *Classe permettant d'utiliser le clavier comme entree.
 <DT>Organisation possible des repertoires :

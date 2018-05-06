@@ -1,4 +1,4 @@
-package application;
+package jeu;
 
 import java.util.Scanner;
 import jeu.*;
