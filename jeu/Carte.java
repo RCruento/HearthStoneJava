@@ -42,7 +42,7 @@ public class Carte implements ICarte{
         return null;
     }
 
-    public int getMana(){
+    public int getCout(){
         return this.mana;
     }
     public boolean getServiteur(){
@@ -101,18 +101,21 @@ public class Carte implements ICarte{
         }
     }
 
-    public void executerActiion(Carte cible) {
+    public void executerAction(Object cible) throws HearthstoneException {
+        if(cible == null){
+            throw  new HearthstoneException("Erreur Cible");
+        }
+        if (cible == this){
 
+        }
+        if (cible.getClass() == Heros.class.getClass()){
+            Heros cib = (Heros) cible;
+
+        }
     }
+    public void executerEffetDebutMiseEnJeu(Object cible)throws HearthstoneException{}
+    public void executerEffetDebutTour(Object cible)throws HearthstoneException{}
+    public void executerEffetDisparition(Object cible)throws HearthstoneException{}
+    public void executerEffetFinTour(Object cible)throws HearthstoneException{}
 
-    public void    executerAction(Carte cible){}
-    public void    executerEffetDebutMiseEnJeu(Carte cible){}
-    public void    executerEffetDebutTour(Carte cible){}
-    public void    executerEffetDisparition(Carte cible){}
-    public void    executerEffetFinTour(Carte cible){}
-
-    @Override
-    public int getCout() {
-        return 0;
-    }
 }

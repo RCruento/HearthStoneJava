@@ -5,6 +5,6 @@ public class HearthstoneException extends Exception {
         super(message);
     }
     public HearthstoneException(){
-        super();
+        super("Erreur");
     }
 }

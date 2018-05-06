@@ -6,6 +6,8 @@ public class Joueur implements IJoueur{
     private String pseudo;
     private Deck deck;
     private boolean joue = false; // = à 1 au premier joueur à 0 au second
+    private ICarte carteMain;
+    private ICarte carteEnJeu;
 
     //Constructor
     public Joueur(String pseudo, boolean joue){
@@ -28,8 +30,9 @@ public class Joueur implements IJoueur{
 
 
     public ICarte getCarteEnJeu() {
-        return getNom();
+        return this.carteMain;
     }
+
 
 
     public ICarte getCarteEnMain() {
