@@ -1,18 +1,21 @@
 package jeu;
+import com.sun.org.omg.CORBA.ExceptionDescriptionHelper;
+
 import java.util.ArrayList;
 
 public class Deck {
-    public String nomdeck;
-    public int NbCarte = 15;
-    public ArrayList<ICarte> carte;
+    private Joueur proprio;
+    private int NbCarte = 15;
+    private ArrayList<ICarte> carte;
     //constructor
-    public Deck(String nomdeck) throws HearthstoneException
+
+
+
+    public Deck(Joueur proprio) throws HearthstoneException
     {
-
-
-        this.setNom(nomdeck);
+        this.setProrio(proprio);
         this.carte=new ArrayList<ICarte>();
-        if(nomdeck.equals("Mage") ){
+        if(proprio.equals("Mage") ){
             Carte CSoJ1 = new Carte("Choc de flamme", 7, "Attaque massive");
             Carte CSoJ2 = new Carte("Eclaire de givre", 2, "Attaque du givre");
             Carte CSoJ3 = new Carte("Intelligence des arcanes", 2, "Pioche 2 cartes");
@@ -24,7 +27,7 @@ public class Deck {
             this.addCarte(CSoJ4);
             this.addCarte(CSoJ5);
         }else {
-            if (nomdeck.equals("Chasseur")) {
+            if (proprio.equals("Chasseur")) {
                 Carte CSeR = new Carte("Busard affamé", 5, 3, 2, "Pioche 1 carte");
                 Carte CSoR1 = new Carte("Marque du chasseur", 1, "Marque du chasseur");
                 Carte CSoR2 = new Carte("Tir des arcanes", 1, "Tir des arcanes");
@@ -63,6 +66,8 @@ public class Deck {
         //this.addCarte(CSo2);
     }
 
+
+
     //methodes
     public void addCarte(Carte a) throws HearthstoneException {
         if (this.carte.size() < NbCarte) {
@@ -80,15 +85,15 @@ public class Deck {
         }
     }
     //getters setters
-    public void setNom(String nomdeck)throws HearthstoneException {
-        if (nomdeck != null){
-            this.nomdeck = nomdeck;
+    public void setProrio(Joueur proprio) {
+        if (proprio != null){
+            this.proprio = proprio;
         }else{
-            throw new HearthstoneException("Erreur saisie veuillez corriger !");
+            throw new IllegalArgumentException("Erreur saisie veuillez corriger !");
         }
     }
-    public String getNomDeck() {
-        return this.nomdeck;
+    public Joueur getProprio() {
+        return this.proprio;
     }
     public ICarte getCarte(int x) {
         if (x >= 0 && x <= this.carte.size()){
@@ -98,7 +103,7 @@ public class Deck {
     }
     public String toString()
     {   int nb;
-        String res="Deck[nom=  "+getNomDeck()+"carte={"+"\n";
+        String res="Deck[nom=  "+getProprio()+"carte={"+"\n";
         for(int i=0;i<this.carte.size();i++)
         {
             res+=i+this.getCarte(i).toString()+"\n";

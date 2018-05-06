@@ -2,7 +2,7 @@ package jeu;
 import java.util.ArrayList;
 
 public class Heros extends Joueur {
-    private  String nom;
+    private  String heros;
     private int pSante;
     private int pMana;
     private Capacite pouvoir;
@@ -12,7 +12,7 @@ public class Heros extends Joueur {
 
     public Heros(String nom, Capacite pouvoir, String nomJ, boolean joue) {
         super(nomJ, joue);
-        this.nom = nom;
+        this.heros = nom;
         this.pouvoir = pouvoir;
         this.putilise = false;
         this.pSante = 15;
@@ -20,8 +20,8 @@ public class Heros extends Joueur {
     }
 
     // Getter & Setter
-    public String getNom(){
-        return this.nom;
+    public String getNomHeros(){
+        return this.heros;
     }
     public int getpSante(){
         return this.pSante;
