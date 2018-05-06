@@ -13,7 +13,7 @@ public class Carte implements ICarte{
     private IJoueur propietaire;
 
     //Constructor
-    //Serviteur
+        //Serviteur
     public Carte( String nom, int mana, int PA, int PS, String capaciteSer ){
         this.setNom(nom);
         this.setMana(mana);
@@ -23,7 +23,7 @@ public class Carte implements ICarte{
         this.setCapaciteSer(capaciteSer);
     }
 
-    //Magique
+        //Magique
     public Carte( String nom, int mana, String capacite ){
         this.setNom(nom);
         this.setMana(mana);
@@ -93,6 +93,14 @@ public class Carte implements ICarte{
     public void setProvocation(boolean provoc){this.provocation = provoc;}
 
     //Methods
+    public String toString(){
+        if (this.serviteur) {
+            return "Carte : " + this.nom + " Cout : " + this.mana + " Attaque " + this.PA + " Santé " + this.PS;
+        }else{
+            return "Carte : " + this.nom + " Cout : " + this.mana + " Attaque " + this.PA;
+        }
+    }
+
     public boolean disparait(){
         if(this.PS == 0){
             return true;
@@ -100,7 +108,6 @@ public class Carte implements ICarte{
             return false;
         }
     }
-
     public void executerAction(Object cible)  {
         if(cible == null){
             System.exit(-1);

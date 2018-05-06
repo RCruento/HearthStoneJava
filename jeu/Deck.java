@@ -1,21 +1,20 @@
 package jeu;
-import com.sun.org.omg.CORBA.ExceptionDescriptionHelper;
 
 import java.util.ArrayList;
 
 public class Deck {
-    private Joueur proprio;
+    private Heros heros;
     private int NbCarte = 15;
     private ArrayList<ICarte> carte;
     //constructor
 
 
 
-    public Deck(Joueur proprio)
+    public Deck(Heros heros)
     {
-        this.setProrio(proprio);
+        this.setProrio(heros);
         this.carte=new ArrayList<ICarte>();
-        if(proprio.getHeros().equals("Jaina") ){
+        if(heros.getNomHeros().equals("Jaina") ){
             Carte CSoJ1 = new Carte("Choc de flamme", 7, "Attaque massive");
             Carte CSoJ2 = new Carte("Eclaire de givre", 2, "Attaque du givre");
             Carte CSoJ3 = new Carte("Intelligence des arcanes", 2, "Pioche 2 cartes");
@@ -26,8 +25,8 @@ public class Deck {
             this.addCarte(CSoJ3);
             this.addCarte(CSoJ4);
             this.addCarte(CSoJ5);
-        }else {
-            if (proprio.getHeros().equals("Rexxar")) {
+        }
+        if (heros.getNomHeros().equals("Rexxar")) {
                 Carte CSeR = new Carte("Busard affamé", 5, 3, 2, "Pioche 1 carte");
                 Carte CSoR1 = new Carte("Marque du chasseur", 1, "Marque du chasseur");
                 Carte CSoR2 = new Carte("Tir des arcanes", 1, "Tir des arcanes");
@@ -38,9 +37,6 @@ public class Deck {
                 this.addCarte(CSoR2);
                 this.addCarte(CSoR3);
                 this.addCarte(CSoR4);
-            } else {
-                System.out.println("ERROR !!");
-            }
         }
         Carte CSe1 = new Carte("Chasseur-marée murloc", 2, 2, 1, "Cri de guerre");
         Carte CSe2 = new Carte("Champion de Hurlevent", 7, 6,6, "Bonus de Hurlevent");
@@ -68,6 +64,7 @@ public class Deck {
 
 
 
+
     //methodes
     public void addCarte(Carte a)   {
         if (this.carte.size() < NbCarte) {
@@ -81,19 +78,19 @@ public class Deck {
         if (i <= this.carte.size()){
             this.carte.remove(i);
         }else{
-            System.exit(-1);
+
         }
     }
     //getters setters
-    public void setProrio(Joueur proprio) {
+    public void setProrio(Heros proprio) {
         if (proprio != null){
-            this.proprio = proprio;
+            this.heros = proprio;
         }else{
             throw new IllegalArgumentException("Erreur saisie veuillez corriger !");
         }
     }
-    public Joueur getProprio() {
-        return this.proprio;
+    public Heros getProprio() {
+        return this.heros;
     }
     public ICarte getCarte(int x) {
         if (x >= 0 && x <= this.carte.size()){
@@ -102,13 +99,13 @@ public class Deck {
         return null;
     }
     public String toString()
-    {   int nb;
-        String res="Deck[nom=  "+getProprio()+"carte={"+"\n";
+    {
+        String res="carte {"+"\n";
         for(int i=0;i<this.carte.size();i++)
         {
-            res+=i+this.getCarte(i).toString()+"\n";
+            res+=i+" - "+this.getCarte(i).toString()+"\n";
 
         }
-        return res+="}]";
+        return res+="}";
     }
 }

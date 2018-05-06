@@ -56,7 +56,7 @@ public class Heros {
     }
 
     public String toString(){
-        return getNomHeros()+""+getpMana()+""+getPouvoir()+""+getpSante();
+        return "Heros : "+this.heros+" Santé : "+this.pSante+" Mana : "+this.pMana+" Capacité : "+this.pouvoir.toString();
     }
 
 }

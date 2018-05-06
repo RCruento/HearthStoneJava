@@ -9,10 +9,10 @@ public class Capacite implements ICapacite{
         this.setDescription(description);
     }
 
-    private void setNom(String nom) {
+    public void setNom(String nom) {
         this.nom = nom;
     }
-    private void setDescription(String description){
+    public void setDescription(String description){
         this.description = description;
     }
     public String getDescription() {
@@ -23,6 +23,9 @@ public class Capacite implements ICapacite{
     }
 
     //Methods
+    public String toString(){
+        return "capacité : "+this.nom+" description : "+this.description;
+    }
     public void executerAction(Object cible) {
 
     }

@@ -7,15 +7,14 @@ public class Joueur implements IJoueur{
     private Heros heros;
     private Deck deck;
     private boolean joue = false; // = à 1 au premier joueur à 0 au second
-    private ArrayList<ICarte> carteMain;
-    private ArrayList<ICarte> carteEnJeu;
+    /*private ArrayList<ICarte> carteMain;
+    private ArrayList<ICarte> carteEnJeu;*/
 
     //Constructor
     public Joueur(String pseudo, String hero){
         this.setPseudo(pseudo);
-        this.setDeck(deck);
-        this.setTour(joue);
         this.heros = new Heros(hero);
+        this.deck = new Deck(heros);
     }
 
     //Getter & Setter
@@ -32,7 +31,7 @@ public class Joueur implements IJoueur{
 
 
     public ICarte getCarteEnJeu() {
-        return (ICarte) this.carteMain;
+        return null;
     }
 
 
@@ -44,6 +43,10 @@ public class Joueur implements IJoueur{
 
     public Heros getHeros() {
         return this.heros ;
+    }
+
+    public Deck getDeck(){
+        return this.deck;
     }
 
 
@@ -110,18 +113,13 @@ public class Joueur implements IJoueur{
     public void setTour(boolean joue){
         this.joue = joue;
     }
-    private void setDeck(Deck deck){
-        if(deck == null){
-            System.out.println("Parametre Vide");
-            System.exit(1);
-        }
-
-        this.deck = deck;
+    private void setDeck(Heros J ){
+        this.deck = new Deck(J);
     }
 
     //Methods
     public String toString(){
-        return getPseudo()+heros.toString()+deck.toString();
+        return "joueur : "+this.pseudo+"  "+this.getHeros()+ "  "+getDeck();
     }
 
 }
