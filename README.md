@@ -1,1 +1,1 @@
-# HeartStoneJava
+# HearthStoneJava
