@@ -101,9 +101,9 @@ public class Carte implements ICarte{
         }
     }
 
-    public void executerAction(Object cible) throws HearthstoneException {
+    public void executerAction(Object cible)  {
         if(cible == null){
-            throw  new HearthstoneException("Erreur Cible");
+            System.exit(-1);
         }
         if (cible == this){
 
@@ -113,9 +113,9 @@ public class Carte implements ICarte{
 
         }
     }
-    public void executerEffetDebutMiseEnJeu(Object cible)throws HearthstoneException{}
-    public void executerEffetDebutTour(Object cible)throws HearthstoneException{}
-    public void executerEffetDisparition(Object cible)throws HearthstoneException{}
-    public void executerEffetFinTour(Object cible)throws HearthstoneException{}
+    public void executerEffetDebutMiseEnJeu(Object cible){}
+    public void executerEffetDebutTour(Object cible){}
+    public void executerEffetDisparition(Object cible){}
+    public void executerEffetFinTour(Object cible){}
 
 }

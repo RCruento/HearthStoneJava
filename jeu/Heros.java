@@ -1,7 +1,7 @@
 package jeu;
 import java.util.ArrayList;
 
-public class Heros extends Joueur {
+public class Heros {
     private  String heros;
     private int pSante;
     private int pMana;
@@ -10,10 +10,14 @@ public class Heros extends Joueur {
     private ArrayList<Integer> stockMana;
 
 
-    public Heros(String nom, Capacite pouvoir, String nomJ, boolean joue) {
-        super(nomJ, joue);
+    public Heros(String nom){
         this.heros = nom;
-        this.pouvoir = pouvoir;
+        if(nom.equals("Jaina")){
+            this.pouvoir = new Capacite("Boule de feu", "inflige 1 point de dégât au personnage ciblé.\n");
+        }else if (nom.equals("Rexxar")) {
+            this.pouvoir = new Capacite("Tir assuré", "Inflige 2 points de dégâts au héros adverse.\n");
+
+        }
         this.putilise = false;
         this.pSante = 15;
         this.pMana = 0;
@@ -37,7 +41,7 @@ public class Heros extends Joueur {
     }
 
     public void addMana() throws HearthstoneException {
-        if (this.stockMana.size() < MAX_MANA) {
+        if (this.stockMana.size() <15) {
             this.stockMana.add(1);
         }else{
             throw new HearthstoneException("Vous n'avez droit qu'a 15 cartes maximum");
@@ -51,5 +55,8 @@ public class Heros extends Joueur {
         }
     }
 
+    public String toString(){
+        return getNomHeros()+""+getpMana()+""+getPouvoir()+""+getpSante();
+    }
 
 }

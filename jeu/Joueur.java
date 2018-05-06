@@ -11,10 +11,11 @@ public class Joueur implements IJoueur{
     private ArrayList<ICarte> carteEnJeu;
 
     //Constructor
-    public Joueur(String pseudo, boolean joue){
+    public Joueur(String pseudo, String hero){
         this.setPseudo(pseudo);
         this.setDeck(deck);
         this.setTour(joue);
+        this.heros = new Heros(hero);
     }
 
     //Getter & Setter
@@ -119,6 +120,8 @@ public class Joueur implements IJoueur{
     }
 
     //Methods
-
+    public String toString(){
+        return getPseudo()+heros.toString()+deck.toString();
+    }
 
 }

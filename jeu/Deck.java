@@ -11,11 +11,11 @@ public class Deck {
 
 
 
-    public Deck(Joueur proprio) throws HearthstoneException
+    public Deck(Joueur proprio)
     {
         this.setProrio(proprio);
         this.carte=new ArrayList<ICarte>();
-        if(proprio.equals("Mage") ){
+        if(proprio.getHeros().equals("Jaina") ){
             Carte CSoJ1 = new Carte("Choc de flamme", 7, "Attaque massive");
             Carte CSoJ2 = new Carte("Eclaire de givre", 2, "Attaque du givre");
             Carte CSoJ3 = new Carte("Intelligence des arcanes", 2, "Pioche 2 cartes");
@@ -27,7 +27,7 @@ public class Deck {
             this.addCarte(CSoJ4);
             this.addCarte(CSoJ5);
         }else {
-            if (proprio.equals("Chasseur")) {
+            if (proprio.getHeros().equals("Rexxar")) {
                 Carte CSeR = new Carte("Busard affamé", 5, 3, 2, "Pioche 1 carte");
                 Carte CSoR1 = new Carte("Marque du chasseur", 1, "Marque du chasseur");
                 Carte CSoR2 = new Carte("Tir des arcanes", 1, "Tir des arcanes");
@@ -69,7 +69,7 @@ public class Deck {
 
 
     //methodes
-    public void addCarte(Carte a) throws HearthstoneException {
+    public void addCarte(Carte a)   {
         if (this.carte.size() < NbCarte) {
             this.carte.add(a);
         }else{
@@ -77,11 +77,11 @@ public class Deck {
             System.exit(1);
         }
     }
-    public void delCarte(int i) throws HearthstoneException {
+    public void delCarte(int i)  {
         if (i <= this.carte.size()){
             this.carte.remove(i);
         }else{
-            throw new HearthstoneException("Erreur veuillez corriger !");
+            System.exit(-1);
         }
     }
     //getters setters
