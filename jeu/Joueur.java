@@ -7,8 +7,8 @@ public class Joueur implements IJoueur{
     private Heros heros;
     private Deck deck;
     private boolean joue = false; // = à 1 au premier joueur à 0 au second
-    /*private ArrayList<ICarte> carteMain;
-    private ArrayList<ICarte> carteEnJeu;*/
+    private ArrayList<ICarte> carteMain;
+    private ArrayList<ICarte> carteEnJeu;
 
     //Constructor
     public Joueur(String pseudo, String hero){

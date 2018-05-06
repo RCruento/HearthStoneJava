@@ -1,6 +1,6 @@
 package jeu;
 
-public class Plateau {
+public class Plateau implements IPlateau {
     private Joueur joueur;
     private Carte carte;
     private Deck deck;
@@ -14,6 +14,8 @@ public class Plateau {
     }
 
 
+
+    //Getter Setter
 
     public void setJoeur(Joueur joeur) {
         this.joueur = joeur;
@@ -39,7 +41,47 @@ public class Plateau {
         return deck;
     }
 
+    @Override
+    public void ajouterJoueur(IJoueur joueur) {
+        this.joueur = getJoeur();
+    }
 
-    //Getter Setter
+    @Override
+    public void demarerPartie(){
+
+    }
+
+    @Override
+    public boolean estDemaree() {
+        return false;
+    }
+
+    @Override
+    public void gagnerPartie(IJoueur joueur) {
+
+    }
+
+    @Override
+    public void finirTour(IJoueur joueur) {
+
+    }
+
+    @Override
+    public IJoueur getAdversaire(IJoueur joueur) {
+        return getJoeur();
+    }
+
+    @Override
+    public IJoueur getJoueurCourant() {
+        return getJoeur();
+    }
+
+    @Override
+    public void setJoueurCourant(IJoueur joueur) {
+
+    }
+
+
+
 
 }
