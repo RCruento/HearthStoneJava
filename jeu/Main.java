@@ -1,5 +1,7 @@
 package jeu;
 
+import jeu.Joueur.Joueur;
+
 public class Main {
 
     public static void main(String[] args) {

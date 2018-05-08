@@ -1,4 +1,8 @@
-package jeu;
+package jeu.Joueur;
+
+import jeu.Carte.Carte;
+import jeu.Carte.ICarte;
+import jeu.Heros.Heros;
 
 import java.util.ArrayList;
 

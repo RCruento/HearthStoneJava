@@ -1,13 +1,11 @@
-package jeu;
-import java.util.ArrayList;
+package jeu.Heros;
+import jeu.Capacite.Capacite;
 
 public class Heros {
     private  String heros;
     private int pSante;
-    private int pMana;
     private Capacite pouvoir;
     private  boolean putilise;
-    private ArrayList<Integer> stockMana;
 
 
     public Heros(String nom){
@@ -20,7 +18,6 @@ public class Heros {
         }
         this.putilise = false;
         this.pSante = 15;
-        this.pMana = 0;
     }
 
     // Getter & Setter
@@ -30,29 +27,11 @@ public class Heros {
     public int getpSante(){
         return this.pSante;
     }
-    public int getpMana(){
-        return this.pMana;
-    }
     public Capacite getPouvoir(){
         return this.pouvoir;
     }
     public boolean getPUtilise(){
         return this.putilise;
-    }
-
-    public void addMana() throws HearthstoneException {
-        if (this.stockMana.size() <15) {
-            this.stockMana.add(1);
-        }else{
-            throw new HearthstoneException("Vous n'avez droit qu'a 15 cartes maximum");
-        }
-    }
-    public void delMana(int i) throws HearthstoneException {
-        if (i <= this.stockMana.size()){
-            this.stockMana.remove(i);
-        }else{
-            throw new HearthstoneException("Erreur veuillez corriger !");
-        }
     }
 
     public String toString(){

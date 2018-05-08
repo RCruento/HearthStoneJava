@@ -1,11 +1,17 @@
-package jeu;
+package jeu.Joueur;
+
+import jeu.Carte.Carte;
+import jeu.Carte.ICarte;
+import jeu.Deck.Deck;
+import jeu.Heros.Heros;
 
 import java.util.ArrayList;
 
-public class Joueur implements IJoueur{
+public class Joueur implements IJoueur {
     private String pseudo;
     private Heros heros;
     private Deck deck;
+    private int mana;
     private boolean joue = false; // = à 1 au premier joueur à 0 au second
     private ArrayList<ICarte> carteMain;
     private ArrayList<ICarte> carteEnJeu;

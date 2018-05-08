@@ -1,4 +1,4 @@
-package jeu;
+package jeu.Plateau;
 
 public interface IPlateau {
     void ajouterJoueur(IJoueur joueur);

@@ -1,8 +1,11 @@
-package jeu;
+package jeu.Plateau;
+
+import jeu.Carte.Carte;
+import jeu.Deck.Deck;
+import jeu.Joueur.Joueur;
 
 public class Plateau implements IPlateau {
-    private Joueur joueur;
-    private Carte carte;
+    private IJoueur joueur;
     private Deck deck;
 
 
