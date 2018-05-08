@@ -50,7 +50,10 @@ public class AttaqueCible extends Capacite  {
         }
         if(cible instanceof Heros || cible instanceof Serviteur){
             if(cible instanceof Heros){
-                if()
+
+            }
+            if(cible instanceof  Serviteur){
+
             }
 
         }else{

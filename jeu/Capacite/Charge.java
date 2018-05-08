@@ -1,4 +1,4 @@
 package jeu.Capacite;
 
-public class Charge {
+public class Charge extends Capacite {
 }

@@ -1,4 +1,4 @@
 package jeu.Capacite;
 
-public class MarqueDuChasseur {
+public class MarqueDuChasseur extends Capacite {
 }

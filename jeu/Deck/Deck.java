@@ -1,29 +1,28 @@
 package jeu.Deck;
 
 import jeu.Capacite.ICapacite;
+import jeu.Capacite.Provocation;
 import jeu.Carte.Carte;
 import jeu.Carte.Serviteur;
 import jeu.Carte.Sort;
 import jeu.Heros.Heros;
 import jeu.Carte.ICarte;
 import jeu.Joueur.IJoueur;
-
 import java.util.ArrayList;
 
 public class Deck {
     private IJoueur owner;
-    private Heros heros;
     private int NbCarte = 15;
     private ArrayList<ICarte> carte;
     //constructor
 
 
 
-    public Deck(Heros heros)
+    public Deck(IJoueur owner)
     {
-        this.setProrio(heros);
+        this.setProrio(owner);
         this.carte=new ArrayList<ICarte>();
-        if(heros.getNomHeros().equals("Jaina") ){
+        if(owner.getHeros().equals("Jaina") ){
             Carte CSoJ1 = new Sort(owner,"Choc de flamme", 7 , "Attaque massive");
             Carte CSoJ2 = new Sort(owner,"Eclaire de givre", 2, "Attaque du givre");
             Carte CSoJ3 = new Sort(owner,"Intelligence des arcanes", 2, "Pioche 2 cartes");
@@ -35,7 +34,7 @@ public class Deck {
             this.addCarte(CSoJ4);
             this.addCarte(CSoJ5);
         }
-        if (heros.getNomHeros().equals("Rexxar")) {
+        if (owner.getHeros().equals("Rexxar")) {
                 Carte CSeR = new Serviteur(owner,"Busard affamé", 5, 3, 2);
                 Carte CSoR1 = new Sort(owner,"Marque du chasseur", 1, "Marque du chasseur");
                 Carte CSoR2 = new Sort(owner,"Tir des arcanes", 1, "Tir des arcanes");
@@ -55,7 +54,7 @@ public class Deck {
         Carte CSe6 = new Serviteur(owner,"L'ogre-magi", 4, 4, 4, "Provocation");
         Carte CSe7 = new Serviteur(owner,"Archimage", 6, 4, 7, "Provocation");
         Carte CSe8 = new Serviteur(owner,"Gnôme lépreux", 1, 1, 1, "Attaque du lépreux");
-        Carte CSe9 = new Serviteur(owner,"L'ogre-magi", 4, 4, 4, "Provocation");
+        Carte CSe9 = new Serviteur(owner,"L'ogre-magi", 4, 4, 4, Provocation);
         Carte CSo1 = new Serviteur(owner,"Charge", 1, "Charge");
         // Carte CSo2 = new Carte("Attaque mentale", 2, "Attaque mentale");
         this.addCarte(CSe1);
@@ -70,9 +69,6 @@ public class Deck {
         this.addCarte(CSo1);
         //this.addCarte(CSo2);
     }
-
-
-
 
     //methodes
     public void addCarte(Carte a)   {
@@ -91,15 +87,15 @@ public class Deck {
         }
     }
     //getters setters
-    public void setProrio(Heros proprio) {
+    public void setProrio(IJoueur proprio) {
         if (proprio != null){
-            this.heros = proprio;
+            this.owner = proprio;
         }else{
             throw new IllegalArgumentException("Erreur saisie veuillez corriger !");
         }
     }
-    public Heros getProprio() {
-        return this.heros;
+    public IJoueur getProprio() {
+        return this.owner;
     }
     public ICarte getCarte(int x) {
         if (x >= 0 && x <= this.carte.size()){

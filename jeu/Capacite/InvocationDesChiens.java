@@ -1,4 +1,4 @@
 package jeu.Capacite;
 
-public class InvocationDesChiens {
+public class InvocationDesChiens extends Capacite {
 }

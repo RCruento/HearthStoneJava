@@ -1,41 +1,65 @@
 package jeu.Heros;
-import jeu.Capacite.Capacite;
+import jeu.Capacite.BouleDeFeu;
+import jeu.Capacite.ICapacite;
+import jeu.Joueur.Joueur;
 
-public class Heros {
-    private  String heros;
-    private int pSante;
-    private Capacite pouvoir;
-    private  boolean putilise;
+import java.util.Objects;
 
+public class Heros  {
+    private  String personnage;
+    private int healt = 15;
+    private ICapacite pouvoir;
 
-    public Heros(String nom){
-        this.heros = nom;
-        if(nom.equals("Jaina")){
-            this.pouvoir = new Capacite("Boule de feu", "inflige 1 point de dégât au personnage ciblé.\n");
-        }else if (nom.equals("Rexxar")) {
-            this.pouvoir = new Capacite("Tir assuré", "Inflige 2 points de dégâts au héros adverse.\n");
+    public Heros(String heros, ICapacite pouvoir) {
 
-        }
-        this.putilise = false;
-        this.pSante = 15;
+        this.personnage = heros;
+        this.pouvoir = pouvoir;
     }
 
     // Getter & Setter
-    public String getNomHeros(){
-        return this.heros;
-    }
-    public int getpSante(){
-        return this.pSante;
-    }
-    public Capacite getPouvoir(){
-        return this.pouvoir;
-    }
-    public boolean getPUtilise(){
-        return this.putilise;
+    public String getPersonage() {
+        return this.personnage;
     }
 
-    public String toString(){
-        return "Heros : "+this.heros+" Santé : "+this.pSante+" Mana : "+this.pMana+" Capacité : "+this.pouvoir.toString();
+    public void setHeros(String heros) {
+        this.personnage = heros;
+    }
+
+    public int getHealt() {
+        return healt;
+    }
+
+    public void setHealt(int healt) {
+        this.healt = healt;
+    }
+
+    public ICapacite getPouvoir() {
+        return pouvoir;
+    }
+
+    public void setPouvoir(BouleDeFeu pouvoir) {
+        this.pouvoir = pouvoir;
+    }
+
+    //Methods
+
+    @Override
+    public String toString() {
+        return "Heros{" +
+                "heros='" + personnage + '\'' +
+                ", healt=" + healt +
+                ", pouvoir=" + pouvoir +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Heros)) return false;
+        Heros heros1 = (Heros) o;
+        return healt == heros1.healt &&
+                Objects.equals(personnage, heros1.personnage) &&
+                Objects.equals(pouvoir, heros1.pouvoir);
     }
 
 }

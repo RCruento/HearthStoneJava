@@ -12,12 +12,7 @@ public abstract class Capacite implements ICapacite {
         this.setDescription(description);
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-    public void setDescription(String description){
-        this.description = description;
-    }
+
     public boolean getUsed() {
         return used;
     }
@@ -26,6 +21,12 @@ public abstract class Capacite implements ICapacite {
     }
     public String getNom() {
         return this.nom;
+    }
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+    public void setDescription(String description){
+        this.description = description;
     }
     public void setUsed(boolean used) {
         this.used = used;

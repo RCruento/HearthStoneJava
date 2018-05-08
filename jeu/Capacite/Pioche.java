@@ -1,4 +1,4 @@
 package jeu.Capacite;
 
-public class Pioche {
+public class Pioche extends Capacite {
 }
