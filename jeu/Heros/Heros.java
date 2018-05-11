@@ -1,7 +1,6 @@
 package jeu.Heros;
-import jeu.Capacite.BouleDeFeu;
-import jeu.Capacite.ICapacite;
-import jeu.Joueur.Joueur;
+import jeu.Capacites.Capacite;
+import jeu.Capacites.ICapacite;
 
 import java.util.Objects;
 
@@ -13,7 +12,7 @@ public class Heros  {
     public Heros(String heros, ICapacite pouvoir) {
 
         this.personnage = heros;
-        this.pouvoir = pouvoir;
+        this.setPouvoir(pouvoir);
     }
 
     // Getter & Setter
@@ -37,7 +36,7 @@ public class Heros  {
         return pouvoir;
     }
 
-    public void setPouvoir(BouleDeFeu pouvoir) {
+    public void setPouvoir(ICapacite pouvoir) {
         this.pouvoir = pouvoir;
     }
 

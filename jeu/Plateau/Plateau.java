@@ -9,20 +9,40 @@ import jeu.Joueur.Joueur;
 import java.util.ArrayList;
 
 public class Plateau implements IPlateau {
-    private IJoueur player;
+    private IJoueur player1;
+    private IJoueur player2;
     private ArrayList<IJoueur> players;
     private boolean debuter = false;
     private IJoueur joueurCourant;
     private static Plateau plateau = null;
 
-    public Plateau() {
+    public Plateau(IJoueur player1, IJoueur player2) {
+        this.setPlayer1(player1);
+        this.setPlayer2(player2);
         this.players = new ArrayList<IJoueur>() ;
-
+        ajouterJoueur(player1);
+        ajouterJoueur(player2);
         this.joueurCourant = null;
     }
 
     //Getter Setter
 
+
+    public IJoueur getPlayer1() {
+        return player1;
+    }
+
+    public void setPlayer1(IJoueur player1) {
+        this.player1 = player1;
+    }
+
+    public IJoueur getPlayer2() {
+        return player2;
+    }
+
+    public void setPlayer2(IJoueur player2) {
+        this.player2 = player2;
+    }
 
     @Override
     public void ajouterJoueur(IJoueur joueur) {
@@ -36,10 +56,10 @@ public class Plateau implements IPlateau {
     public void retirerJoueur(int i){
         if(i==0 || i==1){
             if(i == 0){
-                joueurs.remove(i);
+                players.remove(i);
             }else {
                 if (i == 1) {
-                    joueurs.remove(i);
+                    players.remove(i);
                 } else {
                     throw new IllegalArgumentException("Erreur i");
                 }
@@ -84,9 +104,10 @@ public class Plateau implements IPlateau {
         if(courantplayer.getPseudo().equals(joueurCourant.getPseudo())&& players.get(0).getPseudo().equals(courantplayer.getPseudo())){
             return players.get(1);
         }
-        if(courantplayer.getPseudo().equals(joueurCourant.getPseudo())&& players.get(1).getPseudo().equals(courantplayer.getPseudo()){
+        if(courantplayer.getPseudo().equals(joueurCourant.getPseudo())&& players.get(1).getPseudo().equals(courantplayer.getPseudo())){
             return players.get(0);
         }
+        return courantplayer;
     }
 
     @Override

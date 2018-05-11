@@ -1,4 +1,4 @@
-package jeu.Capacite;
+package jeu.Capacites;
 
 import jeu.Exception.HearthstoneException;
 

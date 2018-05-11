@@ -1,6 +1,7 @@
 package jeu.Carte;
 
-import jeu.Capacite.ICapacite;
+import jeu.Capacites.Capacite;
+import jeu.Capacites.ICapacite;
 import jeu.Exception.HearthstoneException;
 import jeu.Joueur.IJoueur;
 
@@ -10,7 +11,7 @@ public class Sort extends Carte {
     //Constructor
     public Sort(IJoueur propietaire, String nom, int cout, ICapacite capacite) {
         super(propietaire, nom, cout);
-        this.capacite = capacite;
+        this.setCapacite(capacite);
     }
 
     public ICapacite getCapacite() {
@@ -49,5 +50,12 @@ public class Sort extends Carte {
     @Override
     public void executerEffetFinTour(Object cible) throws HearthstoneException {
 
+    }
+
+    @Override
+    public String toString() {
+        return "Sort{"+ this.getNomCarte() +" ,"+
+                capacite +
+                '}';
     }
 }

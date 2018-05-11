@@ -1,16 +1,16 @@
 package jeu.Carte;
 
-import jeu.Capacite.ICapacite;
+import jeu.Capacites.ICapacite;
 import jeu.Exception.HearthstoneException;
 import jeu.Heros.Heros;
 import jeu.Joueur.IJoueur;
-import jeu.Joueur.Joueur;
 
 public class Serviteur extends Carte {
     private int attaque;
     private int sante;
     private boolean endormis = true;
     private boolean vivant = true;
+    private boolean provocation = false;
     private ICapacite capacite;
 
 
@@ -19,7 +19,7 @@ public class Serviteur extends Carte {
         super(propietaire, nom, cout);
         this.attaque = attauque;
         this.sante = sante;
-        this.capacite = capacite;
+        this.setCapacite(capacite);
     }
 
     public Serviteur(IJoueur propietaire, String nom, int cout, int attauque, int sante) {
@@ -52,9 +52,11 @@ public class Serviteur extends Carte {
     public boolean getVivant(){
         return this.vivant;
     }
+
     public void setVivant(boolean vivant){
         this.vivant = vivant;
     }
+
     public void setEndormis(boolean endormis) {
         this.endormis = endormis;
     }
@@ -65,6 +67,14 @@ public class Serviteur extends Carte {
 
     public void setCapacite(ICapacite capacite) {
         this.capacite = capacite;
+    }
+
+    public boolean getProvocation() {
+        return provocation;
+    }
+
+    public void setProvocation(boolean provocation) {
+        this.provocation = provocation;
     }
 
     @Override
@@ -83,14 +93,14 @@ public class Serviteur extends Carte {
         if(cible instanceof Heros || cible instanceof Serviteur){
             if(cible instanceof  Heros){
                 Heros herocible = (Heros) cible;
-                if(serviteurAvecProvocationPlateau()){
+                if(true){
                     throw new HearthstoneException("Serviteur avec Provocation sur le plateau");
                 }
                 herocible.setHealt(herocible.getHealt() - this.attaque);
             }
             if(cible instanceof Serviteur){
                 Serviteur serviteurcible = (Serviteur) cible;
-                if(serviteurAvecProvocationPlateau()){
+                if(true){
                     if(serviteurcible.capacite.getNom().equals("Provocation")){
                         serviteurcible.setSante(serviteurcible.getSante()-this.attaque);
                         this.sante = this.sante - serviteurcible.getAttauque();
@@ -101,7 +111,7 @@ public class Serviteur extends Carte {
                             this.setVivant(false);
                         }
                     }else{
-                        throw new HearthstoneException("Serviteur avec provocation sur le plateau")
+                        throw new HearthstoneException("Serviteur avec provocation sur le plateau");
                     }
                 }else{
                     serviteurcible.setSante(serviteurcible.getSante()-this.attaque);
@@ -136,5 +146,14 @@ public class Serviteur extends Carte {
     @Override
     public void executerEffetFinTour(Object cible) throws HearthstoneException {
 
+    }
+
+    @Override
+    public String toString() {
+        return "Serviteur{"+ this.getNomCarte() +
+                ", attaque=" + attaque +
+                ", sante=" + sante +
+                ", "+ capacite +
+                '}';
     }
 }

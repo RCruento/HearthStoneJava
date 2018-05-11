@@ -1,35 +1,42 @@
-package jeu.Capacite;
+package jeu.Capacites;
 
 import java.util.Objects;
 
 public abstract class Capacite implements ICapacite {
     private String nom;
     private String description;
-    private boolean used = false;
+    private boolean servis = false;
 
-    public Capacite(String nom, String description){
+    public  Capacite(String nom, String description){
+        if(nom == null || nom.equals("")|| nom.isEmpty()){
+            throw  new IllegalArgumentException("Nom capacité non valide");
+        }
         this.setNom(nom);
         this.setDescription(description);
     }
 
 
-    public boolean getUsed() {
-        return used;
-    }
+
+
     public String getDescription() {
         return this.description;
     }
+    public void setDescription(String description){
+        this.description = description;
+    }
+
     public String getNom() {
         return this.nom;
     }
     public void setNom(String nom) {
         this.nom = nom;
     }
-    public void setDescription(String description){
-        this.description = description;
+
+    public boolean getServis() {
+        return servis;
     }
-    public void setUsed(boolean used) {
-        this.used = used;
+    public void setServis(boolean servis){
+        this.servis = servis;
     }
 
     //Methods
