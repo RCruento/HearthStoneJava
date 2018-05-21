@@ -1,7 +1,7 @@
 package jeu.Plateau;
 
 import jeu.Exception.HearthstoneException;
-import jeu.Joueur.IJoueur;
+import jeu.Player.IJoueur;
 
 public interface IPlateau {
     void ajouterJoueur(IJoueur joueur);
@@ -12,4 +12,6 @@ public interface IPlateau {
     IJoueur getAdversaire(IJoueur joueur);
     IJoueur getJoueurCourant()throws HearthstoneException;
     void setJoueurCourant(IJoueur joueur);
+    
+
 }

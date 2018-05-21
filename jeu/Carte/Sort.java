@@ -1,9 +1,8 @@
 package jeu.Carte;
 
-import jeu.Capacites.Capacite;
 import jeu.Capacites.ICapacite;
 import jeu.Exception.HearthstoneException;
-import jeu.Joueur.IJoueur;
+import jeu.Player.IJoueur;
 
 public class Sort extends Carte {
     private ICapacite capacite;
@@ -53,8 +52,13 @@ public class Sort extends Carte {
     }
 
     @Override
+    public void executerEffetFinTour() {
+
+    }
+
+    @Override
     public String toString() {
-        return "Sort{"+ this.getNomCarte() +" ,"+
+        return "Sort{"+ this.getNomCarte() +" , Mana : "+this.getCout()+" , "+
                 capacite +
                 '}';
     }

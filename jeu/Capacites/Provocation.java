@@ -1,6 +1,8 @@
 package jeu.Capacites;
 
+import jeu.Carte.Serviteur;
 import jeu.Exception.HearthstoneException;
+import jeu.Plateau.Plateau;
 
 public final class Provocation extends Capacite {
 
@@ -33,6 +35,16 @@ public final class Provocation extends Capacite {
 
     @Override
     public void executeEffetMiseEnjeu(Object cible) throws HearthstoneException {
+        if(cible == null){
+            throw  new HearthstoneException("Aucune cible");
+        }
+        if(cible instanceof Serviteur) {
+            if (Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu().contains(cible)) {
+                ((Serviteur) Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getCarteEnJeu(((Serviteur) cible).getNomCarte())).setProvocation(true);
+            }
+        }else{
+            throw  new HearthstoneException("Provocation ne peut être que sur des serviteurs");
+        }
 
     }
 }

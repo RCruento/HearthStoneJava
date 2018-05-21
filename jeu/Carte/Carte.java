@@ -1,6 +1,6 @@
 package jeu.Carte;
 
-import jeu.Joueur.IJoueur;
+import jeu.Player.IJoueur;
 
 
 public abstract class Carte implements ICarte {
@@ -15,6 +15,11 @@ public abstract class Carte implements ICarte {
         this.setProprietaire(propietaire);
         this.setNom(nom);
         this.setCout(cout);
+    }
+
+    public Carte( IJoueur propietaire, String nom ) {
+        this.setProprietaire(propietaire);
+        this.setNom(nom);
     }
 
 

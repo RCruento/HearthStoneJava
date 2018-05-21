@@ -42,6 +42,17 @@ public class Heros  {
 
     //Methods
 
+    public void blesserHero(int degat){
+        setHealt(this.healt - degat);
+    }
+
+    public boolean mort(){
+        if(this.healt <= 0){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return "Heros{" +

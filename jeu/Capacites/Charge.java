@@ -2,6 +2,8 @@ package jeu.Capacites;
 
 import jeu.Carte.Serviteur;
 import jeu.Exception.HearthstoneException;
+import jeu.Heros.Heros;
+import jeu.Plateau.Plateau;
 
 public final class Charge extends Capacite  {
 
@@ -11,13 +13,7 @@ public final class Charge extends Capacite  {
     }
 
     public void executerAction(Object cible) throws HearthstoneException {
-        if (cible == null) {
-            throw new IllegalArgumentException( "La capacité 'Charge' nécessite une cible");
-        } else if (!(cible instanceof Serviteur)) {
-            throw new HearthstoneException("Ver de terre greloteux que tu es, tu dois désigner un serviteur !");
-        } else {
-            Serviteur serviteurCible = (Serviteur) cible;
-        }
+
     }
 
     @Override
@@ -37,6 +33,17 @@ public final class Charge extends Capacite  {
 
     @Override
     public void executeEffetMiseEnjeu(Object cible) throws HearthstoneException {
+        if(cible == null){
+            throw new  HearthstoneException("Aucune cible");
+        }
+        if(cible instanceof Heros){
+            throw new HearthstoneException("Tu ne peux pas mettre charge sur le hero");
+        }
+        if (cible instanceof Serviteur){
+            if(!((Serviteur) cible).getEndormis()){
+                ((Serviteur) cible).setEndormis(false);
+            }
+        }
 
     }
 

@@ -2,7 +2,7 @@ package jeu.Carte;
 
 import jeu.Exception.HearthstoneException;
 
-import jeu.Joueur.IJoueur;
+import jeu.Player.IJoueur;
 
 public interface ICarte  {
     boolean disparait();
@@ -14,4 +14,6 @@ public interface ICarte  {
     int     getCout();
     String  getNomCarte();
     IJoueur getProprietaire();
+
+    void executerEffetFinTour() throws HearthstoneException;
 }
