@@ -1,6 +1,8 @@
 package jeu.Application;
 
 import jeu.Capacites.CapacitesJaina.BouleDeFeu;
+import jeu.Carte.Carte;
+import jeu.Carte.Sort;
 import jeu.Exception.HearthstoneException;
 import jeu.Heros.Heros;
 import jeu.Plateau.Plateau;
@@ -11,11 +13,10 @@ import jeu.Player.Joueur;
 public class Main {
     public static Console es = new Console();
 
+
+
     public static void main(String[] args) throws HearthstoneException {
-        Heros Jaina = new Heros("Jaina", new BouleDeFeu());
-        IJoueur Ray = new Joueur("Zénon", Jaina);
-        Heros Rexxar = new Heros("Rexxar", new BouleDeFeu());
-        IJoueur Demos = new Joueur("Demos", Rexxar);
+
 
         Plateau plateau = new Plateau(Ray, Demos);
 
