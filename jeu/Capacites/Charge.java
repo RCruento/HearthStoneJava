@@ -40,9 +40,8 @@ public final class Charge extends Capacite  {
             throw new HearthstoneException("Tu ne peux pas mettre charge sur le hero");
         }
         if (cible instanceof Serviteur){
-            if(!((Serviteur) cible).getEndormis()){
                 ((Serviteur) cible).setEndormis(false);
-            }
+
         }
 
     }

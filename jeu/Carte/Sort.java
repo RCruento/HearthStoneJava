@@ -2,6 +2,7 @@ package jeu.Carte;
 
 import jeu.Capacites.ICapacite;
 import jeu.Exception.HearthstoneException;
+import jeu.Plateau.Plateau;
 import jeu.Player.IJoueur;
 
 public class Sort extends Carte {
@@ -10,7 +11,7 @@ public class Sort extends Carte {
     //Constructor
     public Sort(IJoueur propietaire, String nom, int cout, ICapacite capacite) {
         super(propietaire, nom, cout);
-        this.setCapacite(capacite);
+        this.capacite=capacite;
     }
 
     public ICapacite getCapacite() {
@@ -33,23 +34,27 @@ public class Sort extends Carte {
 
     @Override
     public void executerEffetDebutMiseEnJeu(Object cible) throws HearthstoneException {
-
+            this.capacite.executeEffetMiseEnjeu(this);
     }
 
     @Override
     public void executerEffetDebutTour(Object cible) throws HearthstoneException {
-
+        this.capacite.executerEffetDebutTour();
     }
 
     @Override
     public void executerEffetDisparition(Object cible) throws HearthstoneException {
+        this.capacite.executeEffetDisparition(this);
+
 
     }
 
     @Override
     public void executerEffetFinTour(Object cible) throws HearthstoneException {
+        this.capacite.executerEffetFinTor();
 
     }
+
 
     @Override
     public void executerEffetFinTour() {

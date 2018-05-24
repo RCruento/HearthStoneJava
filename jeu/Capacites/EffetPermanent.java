@@ -42,8 +42,10 @@ public class EffetPermanent extends Capacite {
         if(Plateau.getInstance().getJoueurCourant().getJeu().size() != 0){
             for (ICarte carte: Plateau.getInstance().getJoueurCourant().getJeu()
                  ) {
-                ((Serviteur)carte).setSante(((Serviteur)carte).getSante()+this.bonusSante);
-                ((Serviteur)carte).setAttauque(((Serviteur)carte).getAttauque()+bonusAttaque);
+                if(carte != cible) {
+                    ((Serviteur) carte).bonusSante(this.bonusSante);
+                    ((Serviteur) carte).bonusAttaque(this.bonusAttaque);
+                }
 
             }
         }

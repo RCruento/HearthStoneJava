@@ -55,10 +55,9 @@ public class Heros  {
 
     @Override
     public String toString() {
-        return "Heros{" +
-                "heros='" + personnage + '\'' +
-                ", healt=" + healt +
-                ", pouvoir=" + pouvoir +
+        return "Heros{" + personnage +
+                ", Santé : " + healt +
+                ", Pouvoir : " + pouvoir +
                 '}';
     }
 

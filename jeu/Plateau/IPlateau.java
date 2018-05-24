@@ -12,6 +12,9 @@ public interface IPlateau {
     IJoueur getAdversaire(IJoueur joueur);
     IJoueur getJoueurCourant()throws HearthstoneException;
     void setJoueurCourant(IJoueur joueur);
-    
 
+
+    IJoueur getPlayer1();
+
+    IJoueur getPlayer2();
 }

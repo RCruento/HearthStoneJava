@@ -15,5 +15,6 @@ public interface ICarte  {
     String  getNomCarte();
     IJoueur getProprietaire();
 
+
     void executerEffetFinTour() throws HearthstoneException;
 }

@@ -18,8 +18,8 @@ import java.util.Random;
 public class Joueur implements IJoueur {
     private String pseudo;
     private Heros heros;
-    private int mana = 10;
-    private int stockMana = 10;
+    private int mana = 100;
+    private int stockMana = 100;
     private int piocher = 0;
     private ArrayList<ICarte> deck;
     private ArrayList<ICarte> cartesMain;
@@ -27,60 +27,11 @@ public class Joueur implements IJoueur {
 
     //Constructor
     public Joueur(String pseudo, Heros heros){
-        this.setPseudo(pseudo);
-        this.setHeros(heros);
+        this.pseudo = pseudo;
+        this.heros=heros;
         this.cartesMain = new ArrayList<ICarte>();
         this.cartesEnJeu = new ArrayList<ICarte>();
         this.deck = new ArrayList<ICarte>();
-        if(this.heros.getPersonage().equals("Jaina") ){
-            Carte CSoJ1 = new Sort(this, "Choc de flamme", 7, new ChocDeFlamme());
-            Carte CSoJ2 = new Sort(this, "Eclaire de givre", 2, new EclaireDeGivre());
-            Carte CSoJ3 = new Sort(this, "Intelligence des Arcanes", 2, new IntelligenceDesArcanes());
-            Carte CSoJ4 = new Sort(this,"Image mirroir", 1, new Miroir());
-            Carte CSoJ5 = new Sort(this, "Explosion pyrotechnique", 10, new ExplosionPyrotechnique());
-            this.addCarteDeck(CSoJ1);
-            this.addCarteDeck(CSoJ2);
-            this.addCarteDeck(CSoJ3);
-            this.addCarteDeck(CSoJ4);
-            this.addCarteDeck(CSoJ5);
-        }
-        if (this.heros.getPersonage().equals("Rexxar")) {
-            Carte CSeR = new Serviteur(this,"Busard affamé", 5, 3, 2, new BrusardAffame());
-            Carte CSoR1 = new Sort(this, "Tir des Arcane", 1, new TirDesArcanes());
-            Carte CSoR2 = new Sort(this, "Marque du chasseur", 1, new MarqueDuChasseur());
-            Carte CSoR3 = new Sort(this,"Lâchez les chiens", 3, new Chiens());
-            Carte CSoR5 = new Sort(this, "Ordre de tuer", 3, new OrdreDeTuer());
-            this.addCarteDeck(CSeR);
-            this.addCarteDeck(CSoR1);
-            this.addCarteDeck(CSoR2);
-            this.addCarteDeck(CSoR3);
-            this.addCarteDeck(CSoR5);
-        }
-        Carte CSo1= new Sort(this, "Charge", 1, new Charge());
-        Carte CSo2 = new Sort(this, "Attaque mentale", 2, new AttaqueMentale());
-        Carte CSe1 = new Serviteur(this, "Chasse-marée murloc", 2,2,1, new CriDeGuerre());
-        Carte CSe2 = new Serviteur(this, "Champion de Hurlevent", 7,6,6, new BonusDeHurlevent());
-        Carte CSe3 = new Serviteur(this, "Chef de raid", 3,2,2,new BonusDuChefDeRaid());
-        Carte CSe4 = new Serviteur(this, "Garde de Baie-du-butin", 5,5,4, new Provocation());
-        Carte CSe5 = new Serviteur(this,"La missilière téméraire", 6, 5, 2, new jeu.Capacites.Charge());
-        Carte CSe6 = new Serviteur(this,"L'ogre-magi", 4, 4, 4, new jeu.Capacites.Provocation());
-        Carte CSe7 = new Serviteur(this,"Archimage", 6, 4, 7, new jeu.Capacites.Provocation());
-        Carte CSe9 = new Serviteur(this,"L'ogre-magi", 4, 4, 4, new Provocation());
-        this.addCarteDeck(CSo1);
-        this.addCarteDeck(CSo2);
-        this.addCarteDeck(CSe1);
-        this.addCarteDeck(CSe2);
-        this.addCarteDeck(CSe3);
-        this.addCarteDeck(CSe4);
-        this.addCarteDeck(CSe5);
-        this.addCarteDeck(CSe6);
-        this.addCarteDeck(CSe7);
-        //this.addCarteDeck(CSe9);
-        for (int i = 0; i<5;i++){
-            this.piocher();
-        }
-        this.cartesEnJeu.add(CSe9);
-        this.cartesMain.add(CSe1);
     }
 
     //Getter & Setter
@@ -232,27 +183,27 @@ public class Joueur implements IJoueur {
         String res="Deck : [ { \n";
         for(int i=0;i<this.deck.size();i++)
         {
-            res+= "N°"+i+" "+this.deck.get(i)+"\n";
+            res+= "              "+"N°"+i+" "+this.deck.get(i)+"\n";
         }
-        return res+="}]\n";
+        return res+="              "+"}]\n";
     }
 
     public String afficherMain(){
         String res="Main : [ { \n";
         for(int i=0;i<this.cartesMain.size();i++)
         {
-            res+= "N°"+i+" "+this.cartesMain.get(i)+"\n";
+            res+= "              "+"N°"+i+" "+this.cartesMain.get(i)+"\n";
         }
-        return res+="}]\n";
+        return res+="              "+"}]\n";
     }
 
     public String afficherJeu(){
         String res="Jeu : [ { \n";
         for(int i=0;i<this.cartesEnJeu.size();i++)
         {
-            res+= "N°"+i+" "+this.cartesEnJeu.get(i)+"\n";
+            res+= "              "+"N°"+i+" "+this.cartesEnJeu.get(i)+"\n";
         }
-        return res+="}]\n";
+        return res+="              "+"}]\n";
     }
 
     public void finirTour() throws HearthstoneException {
@@ -276,7 +227,7 @@ public class Joueur implements IJoueur {
         setMana(this.mana - carte.getCout());
         addCarteJeu(carte);
         delCarteMain(carte);
-        carte.executerEffetDebutMiseEnJeu(null);
+        carte.executerEffetDebutMiseEnJeu(carte);
 
     }
 
@@ -320,7 +271,7 @@ public class Joueur implements IJoueur {
     }
 
     public String toString(){
-        return "Joueur : "+this.pseudo+"; mana = "+this.mana+"  "+this.getHeros()+"\n"+ /*afficherDeck()+*/"\n"+afficherMain()+"\n"+afficherJeu()+"\n";
+        return "Joueur : "+this.pseudo+"; mana = "+this.mana+"  "+this.getHeros()+"\n"+ /*afficherDeck()+*/"\n"+afficherMain()+"\n";
     }
 
 }

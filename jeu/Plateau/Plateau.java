@@ -12,25 +12,19 @@ public class Plateau implements IPlateau {
     private ArrayList<IJoueur> players;
     private boolean debuter = false;
     private IJoueur joueurCourant;
-    private static Plateau plateau = null;
 
-    private static Plateau INSTANCE = new Plateau() {
-    };
+    private static IPlateau INSTANCE = null;
 
     /** Point d'accès pour l'instance unique du singleton */
-    public static Plateau getInstance()
-    {   return INSTANCE;
+    public static IPlateau getInstance()
+    {  if(INSTANCE == null){
+        INSTANCE= new Plateau();
+        }
+        return INSTANCE;
     }
-    public Plateau(){}
 
-    public Plateau(IJoueur player1, IJoueur player2) {
-        this.setPlayer1(player1);
-        this.setPlayer2(player2);
-        this.players = new ArrayList<IJoueur>() ;
-        ajouterJoueur(player1);
-        ajouterJoueur(player2);
-        this.joueurCourant = player1;
-    }
+    private Plateau(){}
+
 
 
 
@@ -55,12 +49,18 @@ public class Plateau implements IPlateau {
 
     @Override
     public void ajouterJoueur(IJoueur joueur) {
-        if(this.players.size()>2){
-            throw new IllegalArgumentException("Trop de joueur");
+        if(this.players == null) {
+            this.players = new ArrayList<IJoueur>();
         }
-        this.players.add(joueur);
+        if(this.player1 == null ) {
+            this.player1 = joueur;
+            this.players.add(this.player1);
+        }else{
+            this.player2 = joueur;
+            this.players.add(this.player2);
+            }
+        }
 
-    }
 
     public void retirerJoueur(int i){
         if(i==0 || i==1){
@@ -78,11 +78,16 @@ public class Plateau implements IPlateau {
 
     @Override
     public void demarerPartie() throws HearthstoneException {
+
         if(players.size() == 0){
             throw new HearthstoneException("Aucun joueur");
         }
         if(players.size()== 1){
             throw new HearthstoneException("Un seul joueur");
+        }
+        for(int i = 0; i<4;i++){
+            this.player1.piocher();
+            this.player2.piocher();
         }
         this.debuter = true;
     }
@@ -109,14 +114,14 @@ public class Plateau implements IPlateau {
     public IJoueur getAdversaire(IJoueur courantplayer) {
        if( courantplayer == null){
             throw new IllegalArgumentException("Aucun adveraire");
-        }
-        if(courantplayer.getPseudo().equals(joueurCourant.getPseudo())&& players.get(0).getPseudo().equals(courantplayer.getPseudo())){
+       }
+       if(this.joueurCourant.getPseudo().equals(players.get(0).getPseudo())){
             return players.get(1);
-        }
-        if(courantplayer.getPseudo().equals(joueurCourant.getPseudo())&& players.get(1).getPseudo().equals(courantplayer.getPseudo())){
+       }
+       if(this.joueurCourant.getPseudo().equals(players.get(1).getPseudo())){
             return players.get(0);
-        }
-        return courantplayer;
+       }
+       return courantplayer;
     }
 
     @Override
@@ -150,7 +155,9 @@ public class Plateau implements IPlateau {
                             "|                                                                                                                                                                                                                                                                                                                    |\n"+
                             "|                                                                                                                                                                                                                                                                                                                    |\n"+
                             "|                                                                                                                                                                                                                                                                                                                    |\n"+
-                            "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n";
+                            "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n"+
+                            this.getJoueurCourant().toString();
+
         }else if (this.getJoueurCourant().getJeu().size() != 0 && this.getAdversaire(this.getJoueurCourant()).getJeu().size() == 0){
             return
             "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n"+
@@ -166,18 +173,20 @@ public class Plateau implements IPlateau {
                     "|                                                                                                                                                                                                                                                                                                                    |\n"+
                     "|                                                                                                                                                                                                                                                                                                                    |\n"+
                     "|                                                                                                                                                                                                                                                                                                                    |\n"+
-                    "|"+this.getJoueurCourant().getJeu()+                                                                                                                                                           "                                                         |\n"+
+                    "|"+"              "+this.getJoueurCourant().afficherJeu()+                                                                                                                                                           "                                                         |\n"+
                     "|                                                                                                                                                                                                                                                                                                                    |\n"+
                     "|                                                                                                                                                                                                                                                                                                                    |\n"+
                     "|                                                                                                                                                                                                                                                                                                                    |\n"+
-                    "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n";
+                    "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n"+
+                    this.getJoueurCourant().toString();
+
 
         }else if (this.getJoueurCourant().getJeu().size() == 0 && this.getAdversaire(this.getJoueurCourant()).getJeu().size() != 0){
             return
                     "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n"+
                             "|                                                                                                                                                                                                                                                                                                                    |\n"+
                             "|                                                                                                                                                                                                                                                                                                                    |\n"+
-                            "|"+this.getAdversaire(this.getJoueurCourant()).getJeu()+                                                                                                                                                                                             "                                                                |\n"+
+                            "|"+"              "+this.getAdversaire(this.getJoueurCourant()).afficherJeu()+                                                                                                                                                                                             "                                                                |\n"+
                             "|                                                                                                                                                                                                                                                                                                                    |\n"+
                             "|                                                                                                                                                                                                                                                                                                                    |\n"+
                             "|                                                                                                                                                                                                                                                                                                                    |\n"+
@@ -191,14 +200,16 @@ public class Plateau implements IPlateau {
                             "|                                                                                                                                                                                                                                                                                                                    |\n"+
                             "|                                                                                                                                                                                                                                                                                                                    |\n"+
                             "|                                                                                                                                                                                                                                                                                                                    |\n"+
-                            "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n";
+                            "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n"+
+                            this.getJoueurCourant().toString();
+
 
         }
         return
                 "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n"+
                "|                                                                                                                                                                                                                                                                                                                    |\n"+
                 "|                                                                                                                                                                                                                                                                                                                    |\n"+
-               "|"+this.getAdversaire(this.getJoueurCourant()).getJeu()+                                                                                                                                                                                             "                                                                |\n"+
+               "|"+"              "+this.getAdversaire(this.getJoueurCourant()).afficherJeu()+                                                                                                                                                                                             "                                                                |\n"+
                 "|                                                                                                                                                                                                                                                                                                                    |\n"+
                 "|                                                                                                                                                                                                                                                                                                                    |\n"+
                 "|                                                                                                                                                                                                                                                                                                                    |\n"+
@@ -208,12 +219,12 @@ public class Plateau implements IPlateau {
                 "|                                                                                                                                                                                                                                                                                                                    |\n"+
                 "|                                                                                                                                                                                                                                                                                                                    |\n"+
                 "|                                                                                                                                                                                                                                                                                                                    |\n"+
-               "|"+this.getJoueurCourant().getJeu()+                                                                                                                                                           "                                                         |\n"+
+               "|"+"              "+this.getJoueurCourant().afficherJeu()+                                                                                                                                                           "                                                         |\n"+
                 "|                                                                                                                                                                                                                                                                                                                    |\n"+
                 "|                                                                                                                                                                                                                                                                                                                    |\n"+
                 "|                                                                                                                                                                                                                                                                                                                    |\n"+
-                "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n";
-
+                "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n"+
+                        this.getJoueurCourant().toString();
 
     }
 

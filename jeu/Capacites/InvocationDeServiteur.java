@@ -1,6 +1,7 @@
 package jeu.Capacites;
 
 import jeu.Carte.Serviteur;
+import jeu.Carte.Sort;
 import jeu.Exception.HearthstoneException;
 import jeu.Plateau.Plateau;
 
@@ -46,6 +47,9 @@ public abstract class InvocationDeServiteur extends Capacite {
     public void executeEffetMiseEnjeu(Object cible) throws HearthstoneException {
         for(int i=0; i<this.nombreInvocation; i++){
             Plateau.getInstance().getJoueurCourant().getJeu().add(this.invocation);
+        }
+        if(cible instanceof Sort){
+            Plateau.getInstance().getJoueurCourant().getJeu().remove(cible);
         }
 
     }

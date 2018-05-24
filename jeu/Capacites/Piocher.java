@@ -1,5 +1,6 @@
 package jeu.Capacites;
 
+import jeu.Carte.Sort;
 import jeu.Exception.HearthstoneException;
 import jeu.Plateau.IPlateau;
 import jeu.Plateau.Plateau;
@@ -26,6 +27,8 @@ public abstract class Piocher extends Capacite{
 
     @Override
     public void executerAction(Object cible) throws HearthstoneException {
+
+
     }
 
     @Override
@@ -45,14 +48,16 @@ public abstract class Piocher extends Capacite{
 
     @Override
     public void executeEffetMiseEnjeu(Object cible) throws HearthstoneException {
-        if(cible != null){
+        if(cible instanceof Sort) {
+            for (int i = 0; i < this.nbpioche; i++) {
+                Plateau.getInstance().getJoueurCourant().piocher();
 
-            IPlateau plateau = Plateau.getInstance();
-            IJoueur joueur = plateau.getJoueurCourant();
-                for(int i = 0; i< this.nbpioche;i++){
+            }
 
-                    joueur.piocher();
-                }
+            Plateau.getInstance().getJoueurCourant().getJeu().remove(cible);
+
+        }else{
+            throw new HearthstoneException("Cette carte ne permet pas de piocher");
         }
 
     }

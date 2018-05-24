@@ -31,12 +31,12 @@ public class Serviteur extends Carte {
     }
 
     //Getter & Setter
-    public int getAttauque() {
+    public int getAttaque() {
         return attaque;
     }
 
-    public void setAttauque(int attauque) {
-        this.attaque = attauque;
+    public void setAttaque(int attauque) {
+        this.attaque = attaque;
     }
 
     public int getSante() {
@@ -88,6 +88,14 @@ public class Serviteur extends Carte {
         this.sante = this.sante - degat;
     }
 
+    public void bonusSante(int bonus){
+        this.sante += bonus;
+    }
+
+    public void bonusAttaque(int bonus){
+        this.attaque += bonus;
+    }
+
     @Override
     public boolean disparait() {
         if(this.sante <= 0){
@@ -115,7 +123,7 @@ public class Serviteur extends Carte {
                     Serviteur serviteurcible = (Serviteur) cible;
                     if(serviteurcible.getProvocation()){
                         serviteurcible.blesserServiteur(this.attaque);
-                        this.blesserServiteur(serviteurcible.getAttauque());
+                        this.blesserServiteur(serviteurcible.getAttaque());
                         if (serviteurcible.disparait()) {
                             System.out.println(serviteurcible.getNomCarte() + "ciblé est mort");
                             Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu().remove(serviteurcible);
@@ -132,7 +140,7 @@ public class Serviteur extends Carte {
                             }
                         }
                         serviteurcible.blesserServiteur(this.attaque);
-                        this.blesserServiteur(serviteurcible.getAttauque());
+                        this.blesserServiteur(serviteurcible.getAttaque());
                         if (serviteurcible.disparait()) {
                             System.out.println(serviteurcible.getNomCarte() + "ciblé est mort");
                             Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu().remove(serviteurcible);
@@ -149,7 +157,7 @@ public class Serviteur extends Carte {
 
     @Override
     public void executerEffetDebutMiseEnJeu(Object cible) throws HearthstoneException {
-        this.capacite.executerEffetDebutTour();
+        this.capacite.executeEffetMiseEnjeu(this);
 
     }
 
@@ -161,12 +169,12 @@ public class Serviteur extends Carte {
 
     @Override
     public void executerEffetDisparition(Object cible) throws HearthstoneException {
-        this.capacite.executeEffetDisparition(null);
+        this.capacite.executeEffetDisparition(this);
     }
 
     @Override
     public void executerEffetFinTour(Object cible) throws HearthstoneException {
-        this.capacite.executerEffetDebutTour();
+        this.capacite.executerEffetFinTor();
 
     }
 

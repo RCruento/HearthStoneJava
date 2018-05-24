@@ -39,9 +39,7 @@ public final class Provocation extends Capacite {
             throw  new HearthstoneException("Aucune cible");
         }
         if(cible instanceof Serviteur) {
-            if (Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu().contains(cible)) {
-                ((Serviteur) Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getCarteEnJeu(((Serviteur) cible).getNomCarte())).setProvocation(true);
-            }
+            ((Serviteur) cible).setProvocation(true);
         }else{
             throw  new HearthstoneException("Provocation ne peut être que sur des serviteurs");
         }

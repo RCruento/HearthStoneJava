@@ -7,10 +7,7 @@ import jeu.Exception.HearthstoneException;
 import jeu.Plateau.Plateau;
 
 public final class Miroir extends InvocationDeServiteur {
-
-
-    public Miroir() {
+    public Miroir() throws HearthstoneException {
         super("Image miroir", "Invoque 2 Serviteur de Jaina 0/2 avec provocation",new Serviteur(Plateau.getInstance().getJoueurCourant(),"Serviteur de Jaina", 0, 0,2, new Provocation()), 2);
     }
-
 }

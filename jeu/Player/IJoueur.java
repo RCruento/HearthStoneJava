@@ -15,6 +15,7 @@ public interface IJoueur {
     ICarte getCarteEnJeu(String nomCarte) throws HearthstoneException;
     ICarte getCarteEnMain(String nomCarteMain) throws HearthstoneException;
     Heros getHeros();
+    ArrayList<ICarte> getDeck();
     ArrayList<ICarte> getJeu();
     ArrayList<ICarte> getMain();
     int getMana();
@@ -26,4 +27,9 @@ public interface IJoueur {
     void prendreTour()throws HearthstoneException;
     void utiliserCarte(ICarte carte, Object cible) throws HearthstoneException;
     void utiliserPouvoir(Object cible) throws HearthstoneException;
-    }
+
+
+    String afficherJeu();
+    String afficherMain();
+    String afficherDeck();
+}
