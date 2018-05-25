@@ -1,12 +1,13 @@
 package jeu.Capacites;
 
+import jeu.Carte.ICarte;
 import jeu.Carte.Serviteur;
 import jeu.Carte.Sort;
 import jeu.Exception.HearthstoneException;
 import jeu.Heros.Heros;
 import jeu.Plateau.Plateau;
 
-public abstract class AttaqueCiblee extends Capacite{
+public class AttaqueCiblee extends Capacite{
     int degat;
 
 
@@ -26,7 +27,12 @@ public abstract class AttaqueCiblee extends Capacite{
             throw new HearthstoneException("Cibler le platau??????");
         }
         if(cible instanceof Heros){
-            Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getHeros().setHealt(((Heros) cible).getHealt()-this.degat);
+            for (ICarte carte: Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu()) {
+                if(((Serviteur)carte).getProvocation()){
+                    throw  new HearthstoneException("Personnage avec Provocation sur le plateau");
+                }
+            }
+            Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getHeros().blesserHero(this.degat);
             super.setServis(true);
             if(Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getHeros().mort()){
                 Plateau.getInstance().gagnerPartie(Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()));
@@ -34,33 +40,36 @@ public abstract class AttaqueCiblee extends Capacite{
         }
         if(cible instanceof Serviteur){
             if(Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu().contains(cible)){
-                ((Serviteur) Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getCarteEnJeu(((Serviteur) cible).getNomCarte())).
-                        setSante(((Serviteur) Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getCarteEnJeu(((Serviteur) cible).getNomCarte())).getSante()-1);
+                if(((Serviteur) cible).getProvocation()){
+                    ((Serviteur) cible).blesserServiteur(this.degat);
+                }
+                for (ICarte carte: Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu()) {
+                    if(((Serviteur)carte).getProvocation()){
+                        throw  new HearthstoneException("Personnage avec Provocation sur le plateau");
+                    }
+                }
                 super.setServis(true);
                 if(((Serviteur) Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getCarteEnJeu((((Serviteur) cible).getNomCarte()))).disparait()){
                     Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu().remove(cible);
                 }
             }
-            if((Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getCarteEnJeu(((Serviteur) cible).getNomCarte())).disparait()){
-                Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu().remove(cible);
-            }
         }
 
     }
 
-    public void executerEffetDebutTour() throws HearthstoneException {
+    public void executerEffetDebutTour() {
 
     }
 
-    public void executeEffetDisparition(Object cible) throws HearthstoneException {
+    public void executeEffetDisparition(Object cible)  {
 
     }
 
-    public void executerEffetFinTor() throws HearthstoneException {
+    public void executerEffetFinTor()  {
 
     }
 
-    public void executeEffetMiseEnjeu(Object cible) throws HearthstoneException {
+    public void executeEffetMiseEnjeu(Object cible)  {
 
     }
 

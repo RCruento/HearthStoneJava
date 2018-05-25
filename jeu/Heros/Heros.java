@@ -1,10 +1,11 @@
 package jeu.Heros;
-import jeu.Capacites.Capacite;
+
 import jeu.Capacites.ICapacite;
 
 import java.util.Objects;
 
 public class Heros  {
+
     private  String personnage;
     private int healt = 15;
     private ICapacite pouvoir;
@@ -16,7 +17,7 @@ public class Heros  {
     }
 
     // Getter & Setter
-    public String getPersonage() {
+    public String getNomHeros() {
         return this.personnage;
     }
 

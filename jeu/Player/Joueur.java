@@ -18,20 +18,16 @@ import java.util.Random;
 public class Joueur implements IJoueur {
     private String pseudo;
     private Heros heros;
-    private int mana = 100;
-    private int stockMana = 100;
-    private int piocher = 0;
-    private ArrayList<ICarte> deck;
-    private ArrayList<ICarte> cartesMain;
-    private ArrayList<ICarte> cartesEnJeu;
+    private int mana = 0;
+    private int stockMana = 0;
+    private ArrayList<ICarte> deck = new ArrayList<>();
+    private ArrayList<ICarte> cartesMain= new ArrayList<>();
+    private ArrayList<ICarte> cartesEnJeu = new ArrayList<>();
 
     //Constructor
-    public Joueur(String pseudo, Heros heros){
+    public Joueur(String pseudo, Heros heros)  {
         this.pseudo = pseudo;
         this.heros=heros;
-        this.cartesMain = new ArrayList<ICarte>();
-        this.cartesEnJeu = new ArrayList<ICarte>();
-        this.deck = new ArrayList<ICarte>();
     }
 
     //Getter & Setter
@@ -68,10 +64,6 @@ public class Joueur implements IJoueur {
 
     public int getStockMana() {
         return this.stockMana;
-    }
-
-    public int getPiocher() {
-        return piocher;
     }
 
     public ArrayList<ICarte> getDeck() {
@@ -117,16 +109,23 @@ public class Joueur implements IJoueur {
         }
     }
 
+    public void setDeck(ArrayList<ICarte> deck) {
+        this.deck = deck;
+    }
 
-    public void setPiocher(int piocher) {
-        this.piocher = piocher;
+    public void setCartesMain(ArrayList<ICarte> cartesMain) {
+        this.cartesMain = cartesMain;
+    }
+
+    public void setCartesEnJeu(ArrayList<ICarte> cartesEnJeu) {
+        this.cartesEnJeu = cartesEnJeu;
     }
 
         //ArrayListe Deck
 
     public void addCarteDeck(ICarte a)   {
 
-                this.deck.add(a);
+        this.deck.add(a);
 
     }
 
@@ -172,8 +171,8 @@ public class Joueur implements IJoueur {
 
     public void ajouterMana(){
         if(this.stockMana< MAX_MANA) {
-            this.mana = stockMana;
             this.stockMana = this.stockMana+1;
+            this.mana = stockMana;
         }else{
             this.mana = 10;
         }
@@ -240,18 +239,14 @@ public class Joueur implements IJoueur {
 
     public void piocher() {
         Random rd = new Random();
-        int alea = 1 + rd.nextInt(this.deck.size() - 1);
+        int alea = rd.nextInt(this.deck.size());
         addCarteMain(deck.get(alea));
         delCarteDeck(deck.get(alea));
     }
 
-    public void prendreTour() throws HearthstoneException{
-        if(this.mana + 1 < MAX_MANA) {
-            this.mana = this.mana + 1;
-            this.stockMana = mana;
-        }
+    public void prendreTour() {
+        this.ajouterMana();
         this.piocher();
-
         Plateau.getInstance().setJoueurCourant(this);
 
     }

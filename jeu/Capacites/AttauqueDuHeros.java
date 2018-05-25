@@ -1,10 +1,12 @@
 package jeu.Capacites;
 
+import jeu.Carte.ICarte;
+import jeu.Carte.Serviteur;
 import jeu.Exception.HearthstoneException;
 import jeu.Heros.Heros;
 import jeu.Plateau.Plateau;
 
-public  abstract class AttauqueDuHeros extends Capacite {
+public class AttauqueDuHeros extends Capacite {
     private int degat;
 
     public AttauqueDuHeros(String nom, String description, int degat) {
@@ -19,9 +21,15 @@ public  abstract class AttauqueDuHeros extends Capacite {
             throw new HearthstoneException("Aucun Heros cible (null)");
         }
         if(cible instanceof Heros){
+            for (ICarte carte: Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu()) {
+                if(((Serviteur)carte).getCapacite().getNom().equals("Provocation")){
+                    throw  new HearthstoneException("Personnage avec Provocation sur le plateau");
+                }
+            }
             Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getHeros().blesserHero(this.degat);
+            super.setServis(true);
             if(Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getHeros().mort()){
-                Plateau.getInstance().gagnerPartie(Plateau.getInstance().getJoueurCourant());
+                Plateau.getInstance().gagnerPartie(Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()));
             }
         }else{
             throw new HearthstoneException("Tu dois obligatoirement cibler un Hero");
@@ -30,22 +38,22 @@ public  abstract class AttauqueDuHeros extends Capacite {
     }
 
     @Override
-    public void executerEffetDebutTour() throws HearthstoneException {
+    public void executerEffetDebutTour() {
 
     }
 
     @Override
-    public void executeEffetDisparition(Object cible) throws HearthstoneException {
+    public void executeEffetDisparition(Object cible){
 
     }
 
     @Override
-    public void executerEffetFinTor() throws HearthstoneException {
+    public void executerEffetFinTor() {
 
     }
 
     @Override
-    public void executeEffetMiseEnjeu(Object cible) throws HearthstoneException {
+    public void executeEffetMiseEnjeu(Object cible) {
 
     }
 

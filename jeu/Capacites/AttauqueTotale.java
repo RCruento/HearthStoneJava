@@ -5,7 +5,7 @@ import jeu.Carte.Serviteur;
 import jeu.Exception.HearthstoneException;
 import jeu.Plateau.Plateau;
 
-public abstract class AttauqueTotale extends Capacite {
+public class AttauqueTotale extends Capacite {
     private int degat;
 
     public AttauqueTotale(String nom, String description, int degat) {
@@ -23,40 +23,40 @@ public abstract class AttauqueTotale extends Capacite {
 
     @Override
     public void executerAction(Object cible) throws HearthstoneException {
-        if(getServis()){
+        if (getServis()) {
             throw new HearthstoneException("Capacité attaque total deja utilisée");
         }
-        if(cible instanceof Serviteur){
-            for (ICarte carte : Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu()
-                 ) {
-                ((Serviteur)carte).blesserServiteur(degat);
-            }
-            for (ICarte carte : Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu()
-                    ) {
-                if(((Serviteur)carte).disparait()){
-                    Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu().remove(carte);
-                }
+        for (ICarte carte : Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu()
+                ) {
+            ((Serviteur) carte).blesserServiteur(this.degat);
+        }
+        super.setServis(true);
+        for (ICarte carte : Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu()
+                ) {
+            if (((Serviteur) carte).disparait()) {
+                Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu().remove(carte);
             }
         }
-    }
-
-    @Override
-    public void executerEffetDebutTour() throws HearthstoneException {
 
     }
 
     @Override
-    public void executeEffetDisparition(Object cible) throws HearthstoneException {
+    public void executerEffetDebutTour(){
 
     }
 
     @Override
-    public void executerEffetFinTor() throws HearthstoneException {
+    public void executeEffetDisparition(Object cible)  {
 
     }
 
     @Override
-    public void executeEffetMiseEnjeu(Object cible) throws HearthstoneException {
+    public void executerEffetFinTor(){
+
+    }
+
+    @Override
+    public void executeEffetMiseEnjeu(Object cible) {
 
     }
 
