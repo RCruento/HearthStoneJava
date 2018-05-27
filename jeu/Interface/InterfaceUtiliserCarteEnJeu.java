@@ -31,7 +31,7 @@ public class InterfaceUtiliserCarteEnJeu extends Interface {
             for(ICarte carteS : p.getJoueurCourant().getJeu()){
                 if(carteS.getNomCarte().contains(nomCarte)){
                     trouveCarte = true;
-                    System.out.println("Quel est la cible ?");
+                    System.out.println("Quelle est la cible ?");
                     nomCible = sc.nextLine();
                     if(p.getAdversaire(p.getJoueurCourant()).getHeros().getNomHeros().contains(nomCible)){
                         trouveCible = true;
