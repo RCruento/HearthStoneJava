@@ -36,7 +36,7 @@ public class MarqueDuChasseur extends Capacite {
     }
 
     @Override
-    public void executerEffetFinTor() throws HearthstoneException {
+    public void executerEffetFinTour() throws HearthstoneException {
 
     }
 

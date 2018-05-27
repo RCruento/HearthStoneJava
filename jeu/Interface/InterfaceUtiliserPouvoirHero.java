@@ -2,6 +2,7 @@ package jeu.Interface;
 
 import jeu.Carte.ICarte;
 import jeu.Exception.HearthstoneException;
+import jeu.Heros.Heros;
 import jeu.Plateau.IPlateau;
 
 import java.util.Scanner;
@@ -19,6 +20,8 @@ public class InterfaceUtiliserPouvoirHero extends Interface {
     @Override
     public void executerRequete(IPlateau p) throws HearthstoneException {
         ICarte cible;
+        Heros herosCible;
+
         Scanner sc = new Scanner(System.in);
         System.out.println("Sur qui utiliser le pouvoir du heros ?");
         String nomCible = sc.nextLine();
@@ -34,7 +37,6 @@ public class InterfaceUtiliserPouvoirHero extends Interface {
             //	System.out.println(e.getMessage());
             //}
         }
-        p.gagnerPartie(p.getJoueurCourant());
     }
 
     @Override

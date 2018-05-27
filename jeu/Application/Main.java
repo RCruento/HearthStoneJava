@@ -125,6 +125,7 @@ public class Main {
 
         plateau.demarerPartie();
 
+
         // Création menu
         ihm = initialiaserInterface();
 
@@ -133,18 +134,7 @@ public class Main {
             System.exit(0);
         }
 
-        while (true) {
-
-
-            for (ICarte carte : Ray.getMain()) {
-                System.out.println("main1");
-                System.out.println(carte.toString());
-            }
-            for (ICarte carte : Demos.getMain()) {
-                System.out.println("main2");
-                System.out.println(carte.toString());
-            }
-
+        while (plateau.estDemaree()) {
 
             System.out.println(plateau.toString());
             String choix = menu();
@@ -153,55 +143,49 @@ public class Main {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-
-            for (ICarte carte : Ray.getJeu()) {
-                System.out.println("jeu");
-                System.out.println(carte.toString());
-            }
-            for (ICarte carte : Demos.getJeu()) {
-                System.out.println("jeu2");
-                System.out.println(carte.toString());
-            }
-
-
         }
     }
 
 
-        public static String menu () {
-            ArrayList<String> menu = new ArrayList<String>();
-            Interface i = ihm;
+
+    public static String menu () {
+        ArrayList<String> menu = new ArrayList<String>();
+        Interface i = ihm;
 
 
-            while (i != null) {
-                menu.add(i.getDescription());
-                i = i.getSuivant();
-            }
-
-            int n = 0;
-            for (String s : menu) {
-                System.out.println("[" + n + "] " + s);
-                n++;
-            }
-
-            System.out.println("Votre choix --> ");
-            Scanner sc = new Scanner(System.in);
-            int choix;
-            try {
-                choix = sc.nextInt();
-                return menu.get(choix);
-            } catch (Exception e) {
-                return menu();
-            }
+        while (i != null) {
+            menu.add(i.getDescription());
+            i = i.getSuivant();
         }
 
-        public static Interface initialiaserInterface () {
-            Interface monInterface = null;
-            monInterface = new InterfaceUtiliserPouvoirHero(monInterface);
-            monInterface = new InterfaceUtiliserCarteEnJeu(monInterface);
-            monInterface = new InterfaceJouerCarte(monInterface);
-            monInterface = new InterfaceFinirTour(monInterface);
-            return monInterface;
+        int n = 0;
+        for (String s : menu) {
+            System.out.println("[" + n + "] " + s);
+            n++;
         }
+
+        System.out.println("Votre choix --> ");
+        Scanner sc = new Scanner(System.in);
+        int choix;
+        try {
+            choix = sc.nextInt();
+            return menu.get(choix);
+        } catch (Exception e) {
+            return menu();
+        }
+    }
+
+
+
+
+    public static Interface initialiaserInterface () {
+        Interface monInterface = null;
+        monInterface = new InterfaceUtiliserPouvoirHero(monInterface);
+        monInterface = new InterfaceUtiliserCarteEnJeu(monInterface);
+        monInterface = new InterfaceJouerCarte(monInterface);
+        monInterface = new InterfaceFinirTour(monInterface);
+
+        return monInterface;
+    }
 }
+

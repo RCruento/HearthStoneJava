@@ -18,30 +18,45 @@ public class InterfaceUtiliserCarteEnJeu extends Interface {
 
     @Override
     public void executerRequete(IPlateau p) throws HearthstoneException {
-        ICarte carte;
-        ICarte cible;
-        System.out.println("Quel carte veux-tu utiliser ?");
+        boolean trouve = false;
+        boolean trouveCarte = false;
+        boolean trouveCible = false;
+        String nomCible;
+
         Scanner sc = new Scanner(System.in);
+        System.out.println("Quel Serviteur veux-tu utiliser ?");
         String nomCarte = sc.nextLine();
-        System.out.println("Quel est la cible ?");
-        String nomCible = sc.nextLine();
 
-        try {
-            carte = p.getJoueurCourant().getCarteEnJeu(nomCarte);
-            if(p.getAdversaire(p.getJoueurCourant()).getJeu().contains(nomCible))
-                cible = p.getAdversaire(p.getJoueurCourant()).getCarteEnJeu(nomCible);
-            else
-                cible = p.getAdversaire(p.getJoueurCourant()).getCarteEnJeu(nomCible);
-            p.getJoueurCourant().utiliserCarte(carte, cible);
+        while(!trouveCarte && !trouveCible){
+            for(ICarte carteS : p.getJoueurCourant().getJeu()){
+                if(carteS.getNomCarte().contains(nomCarte)){
+                    trouveCarte = true;
+                    System.out.println("Quel est la cible ?");
+                    nomCible = sc.nextLine();
+                    if(p.getAdversaire(p.getJoueurCourant()).getHeros().getNomHeros().contains(nomCible)){
+                        trouveCible = true;
+                        p.getJoueurCourant().utiliserCarte(carteS, p.getAdversaire(p.getJoueurCourant()).getHeros().getNomHeros());
+                        break;
+                    }else{
+                        for(ICarte carteScible: p.getAdversaire(p.getJoueurCourant()).getJeu()){
+                            if (carteScible.getNomCarte().contains(nomCible)){
+                                trouveCible = true;
+                                p.getJoueurCourant().utiliserCarte(carteS, carteScible);
+                                break;
+                            }
+                        }
+                    }
+                    break;
+                }
+            }
+            if(!trouveCarte && !trouveCible){
+                System.out.println("Quel Serviteur veux-tu utiliser ?");
+                nomCarte = sc.nextLine();
+                System.out.println("Quel est la cible ?");
+                nomCible = sc.nextLine();
+            }
 
-        }catch (HearthstoneException e){
-            System.out.println(e.getMessage());
         }
-        //System.out.println();
-        p.gagnerPartie(p.getJoueurCourant());
-
-
-
     }
 
     @Override

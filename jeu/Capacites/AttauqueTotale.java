@@ -51,7 +51,7 @@ public class AttauqueTotale extends Capacite {
     }
 
     @Override
-    public void executerEffetFinTor(){
+    public void executerEffetFinTour(){
 
     }
 

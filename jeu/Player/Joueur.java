@@ -18,8 +18,8 @@ import java.util.Random;
 public class Joueur implements IJoueur {
     private String pseudo;
     private Heros heros;
-    private int mana = 0;
-    private int stockMana = 0;
+    private int mana = 100;
+    private int stockMana = 100;
     private ArrayList<ICarte> deck = new ArrayList<>();
     private ArrayList<ICarte> cartesMain= new ArrayList<>();
     private ArrayList<ICarte> cartesEnJeu = new ArrayList<>();
@@ -209,24 +209,25 @@ public class Joueur implements IJoueur {
         for (ICarte carte : this.cartesEnJeu) {
             carte.executerEffetFinTour();
         }
-
-
     }
 
     public void jouerCarte(ICarte carte) throws HearthstoneException {
-        if(carte == null ){
-            throw new  IllegalArgumentException("Aucune carte");
+        if (carte == null) {
+            throw new IllegalArgumentException("Aucune carte");
         }
-        if(! cartesMain.contains(carte)){
+        if (!cartesMain.contains(carte)) {
             throw new IllegalArgumentException(" Carte non en main");
         }
-        if(this.mana < carte.getCout()){
+        if (this.mana < carte.getCout()) {
             throw new HearthstoneException("Pas assez de mana");
         }
-        setMana(this.mana - carte.getCout());
-        addCarteJeu(carte);
-        delCarteMain(carte);
-        carte.executerEffetDebutMiseEnJeu(carte);
+        if (cartesMain.contains(carte)) {
+            System.out.println(carte.getNomCarte());
+            setMana(this.mana - carte.getCout());
+            this.getJeu().add(carte);
+            this.getMain().remove(carte);
+            carte.executerEffetDebutMiseEnJeu(carte);
+        }
 
     }
 
@@ -245,7 +246,6 @@ public class Joueur implements IJoueur {
     }
 
     public void prendreTour() {
-        this.ajouterMana();
         this.piocher();
         Plateau.getInstance().setJoueurCourant(this);
 
@@ -253,7 +253,7 @@ public class Joueur implements IJoueur {
 
     public void utiliserCarte(ICarte carte, Object cible) throws HearthstoneException {
         if(cartesEnJeu.contains(carte)){
-            carte.executerAction(cible);
+            ((Serviteur)carte).executerAction(cible);
         }
     }
 

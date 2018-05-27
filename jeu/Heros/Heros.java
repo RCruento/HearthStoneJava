@@ -6,35 +6,35 @@ import java.util.Objects;
 
 public class Heros  {
 
-    private  String personnage;
-    private int healt = 15;
+    private  String heros;
+    private int sante = 15;
     private ICapacite pouvoir;
 
     public Heros(String heros, ICapacite pouvoir) {
 
-        this.personnage = heros;
+        this.heros = heros;
         this.setPouvoir(pouvoir);
     }
 
     // Getter & Setter
     public String getNomHeros() {
-        return this.personnage;
+        return this.heros;
     }
 
     public void setHeros(String heros) {
-        this.personnage = heros;
+        this.heros = heros;
     }
 
-    public int getHealt() {
-        return healt;
+    public int getSante() {
+        return sante;
     }
 
-    public void setHealt(int healt) {
-        this.healt = healt;
+    public void setSante(int healt) {
+        this.sante = healt;
     }
 
     public ICapacite getPouvoir() {
-        return pouvoir;
+        return this.pouvoir;
     }
 
     public void setPouvoir(ICapacite pouvoir) {
@@ -44,11 +44,11 @@ public class Heros  {
     //Methods
 
     public void blesserHero(int degat){
-        setHealt(this.healt - degat);
+        this.setSante(this.sante - degat);
     }
 
     public boolean mort(){
-        if(this.healt <= 0){
+        if(this.sante <= 0){
             return true;
         }
         return false;
@@ -56,8 +56,8 @@ public class Heros  {
 
     @Override
     public String toString() {
-        return "Heros{" + personnage +
-                ", Santé : " + healt +
+        return "Heros{" + heros +
+                ", Santé : " + sante +
                 ", Pouvoir : " + pouvoir +
                 '}';
     }
@@ -67,8 +67,7 @@ public class Heros  {
         if (this == o) return true;
         if (!(o instanceof Heros)) return false;
         Heros heros1 = (Heros) o;
-        return healt == heros1.healt &&
-                Objects.equals(personnage, heros1.personnage) &&
+        return  Objects.equals(heros, heros1.heros) &&
                 Objects.equals(pouvoir, heros1.pouvoir);
     }
 

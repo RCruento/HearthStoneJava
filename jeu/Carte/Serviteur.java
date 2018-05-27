@@ -119,7 +119,7 @@ public class Serviteur extends Carte {
                     }
 
                 }
-                herocible.setHealt(herocible.getHealt() - this.attaque);
+                herocible.blesserHero(this.attaque);
             }
             if (cible instanceof Serviteur) {
                 Serviteur serviteurcible = (Serviteur) cible;
@@ -160,13 +160,11 @@ public class Serviteur extends Carte {
     @Override
     public void executerEffetDebutMiseEnJeu(Object cible) throws HearthstoneException {
         this.capacite.executeEffetMiseEnjeu(this);
-
     }
 
     @Override
     public void executerEffetDebutTour(Object cible) throws HearthstoneException {
         this.capacite.executerEffetDebutTour();
-
     }
 
     @Override
@@ -176,15 +174,14 @@ public class Serviteur extends Carte {
 
     @Override
     public void executerEffetFinTour(Object cible) throws HearthstoneException {
-        this.capacite.executerEffetFinTor();
-
+        this.capacite.executerEffetFinTour();
     }
 
     @Override
     public void executerEffetFinTour() throws HearthstoneException {
-        this.capacite.executerEffetFinTor();
 
     }
+
 
     @Override
     public String toString() {

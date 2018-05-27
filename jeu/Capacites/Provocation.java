@@ -29,7 +29,7 @@ public final class Provocation extends Capacite {
     }
 
     @Override
-    public void executerEffetFinTor() throws HearthstoneException {
+    public void executerEffetFinTour() throws HearthstoneException {
 
     }
 

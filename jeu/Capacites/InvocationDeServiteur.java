@@ -1,5 +1,6 @@
 package jeu.Capacites;
 
+import javafx.print.PageLayout;
 import jeu.Carte.Serviteur;
 import jeu.Carte.Sort;
 import jeu.Exception.HearthstoneException;
@@ -39,7 +40,7 @@ public abstract class InvocationDeServiteur extends Capacite {
     }
 
     @Override
-    public void executerEffetFinTor() throws HearthstoneException {
+    public void executerEffetFinTour() throws HearthstoneException {
 
     }
 

@@ -42,7 +42,7 @@ public abstract class Piocher extends Capacite{
     }
 
     @Override
-    public void executerEffetFinTor() throws HearthstoneException {
+    public void executerEffetFinTour() throws HearthstoneException {
 
     }
 
@@ -51,13 +51,13 @@ public abstract class Piocher extends Capacite{
         if(cible instanceof Sort) {
             for (int i = 0; i < this.nbpioche; i++) {
                 Plateau.getInstance().getJoueurCourant().piocher();
-
             }
-
             Plateau.getInstance().getJoueurCourant().getJeu().remove(cible);
 
         }else{
-            throw new HearthstoneException("Cette carte ne permet pas de piocher");
+            for (int i = 0; i < this.nbpioche; i++) {
+                Plateau.getInstance().getJoueurCourant().piocher();
+            }
         }
 
     }

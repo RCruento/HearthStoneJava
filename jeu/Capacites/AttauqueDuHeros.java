@@ -48,7 +48,7 @@ public class AttauqueDuHeros extends Capacite {
     }
 
     @Override
-    public void executerEffetFinTor() {
+    public void executerEffetFinTour() {
 
     }
 

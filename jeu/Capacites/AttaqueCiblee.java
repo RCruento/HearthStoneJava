@@ -16,6 +16,14 @@ public class AttaqueCiblee extends Capacite{
         this.degat= degat;
     }
 
+    public int getDegat() {
+        return degat;
+    }
+
+    public void setDegat(int degat) {
+        this.degat = degat;
+    }
+
     public void executerAction(Object cible) throws HearthstoneException {
         if (cible == null){
             throw new IllegalArgumentException("Cible nulle");
@@ -65,7 +73,7 @@ public class AttaqueCiblee extends Capacite{
 
     }
 
-    public void executerEffetFinTor()  {
+    public void executerEffetFinTour()  {
 
     }
 
