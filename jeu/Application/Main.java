@@ -35,7 +35,7 @@ public class Main {
                 new AttaqueCiblee("Boule de feu", "Inflige 1 de degat au personnage ciblé", 1));
 
         Heros Rexxar = new Heros("Rexxar",
-                new AttauqueDuHeros("Tir Assuré", "Inflige 2 points de degats au heros adverse", 2));
+                new AttaqueDuHeros("Tir Assuré", "Inflige 2 points de degats au heros adverse", 2));
 
         IJoueur Ray = new Joueur("Rayan", Jaina);
         IJoueur Demos = new Joueur("Demos", Rexxar);
@@ -48,7 +48,7 @@ public class Main {
 
         //Carte propre a Jaina
         ICarte CSoJ1 = new Sort(Ray, "Choc de flamme", 7,
-                new AttauqueTotale("Attaque massive", "Inflige 4 points de degats à tous les adversaires", 4));
+                new AttaqueTotale("Attaque massive", "Inflige 4 points de degats à tous les adversaires", 4));
         ICarte CSoJ2 = new Sort(Ray, "Eclaire de givre", 2,
                 new AttaqueCiblee("Attaque du givre", "Inflige 3 points de degats au personnage ciblé", 3));
         ICarte CSoJ3 = new Sort(Ray, "Intelligence des Arcanes", 2,
@@ -82,7 +82,7 @@ public class Main {
         //Carte Communes
         Carte CSo1 = new Sort(Demos, "Charge", 1, new Charge());
         Carte CSo2 = new Sort(Demos, "Attaque mentale", 2,
-                new AttauqueDuHeros("Attaque mentale", "Inflige 5 points de degats au heros", 5));
+                new AttaqueDuHeros("Attaque mentale", "Inflige 5 points de degats au heros", 5));
         Carte CSe1 = new Serviteur(Demos, "Chasse-marée murloc", 2, 2, 1,
                 new CriDeGuerre());
         Carte CSe2 = new Serviteur(Demos, "Champion de Hurlevent", 7, 6, 6,

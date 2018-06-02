@@ -1,5 +1,7 @@
 package jeu.Plateau;
 
+import jeu.Carte.ICarte;
+import jeu.Carte.Serviteur;
 import jeu.Exception.HearthstoneException;
 import jeu.Player.IJoueur;
 import java.util.ArrayList;
@@ -65,14 +67,22 @@ public class Plateau implements IPlateau {
         if(getAdversaire(getJoueurCourant()).getHeros().mort()){
             this.debuter = false;
             System.out.println("Player : " + joueur.getPseudo() + " a gagné la partie");
+            System.exit(0);
         }
     }
 
     @Override
     public void finirTour(IJoueur joueur) throws HearthstoneException {
         this.joueurCourant.finirTour();
-        this.setJoueurCourant(getAdversaire(this.joueurCourant));
-        this.getJoueurCourant().piocher();
+        if(!this.getAdversaire(this.getJoueurCourant()).getHeros().mort()){
+            this.setJoueurCourant(getAdversaire(this.joueurCourant));
+            this.getJoueurCourant().piocher();
+
+        }else{
+            this.gagnerPartie(joueur);
+        }
+
+
     }
 
     @Override

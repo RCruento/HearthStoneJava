@@ -44,7 +44,7 @@ public class Heros  {
     //Methods
 
     public void blesserHero(int degat){
-        this.setSante(this.sante - degat);
+        this.sante = this.sante - degat;
     }
 
     public boolean mort(){

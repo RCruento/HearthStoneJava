@@ -49,13 +49,16 @@ public class InterfaceUtiliserCarteEnJeu extends Interface {
                     break;
                 }
             }
-            if(!trouveCarte && !trouveCible){
-                System.out.println("Quel Serviteur veux-tu utiliser ?");
-                nomCarte = sc.nextLine();
-                System.out.println("Quel est la cible ?");
-                nomCible = sc.nextLine();
+            if(!trouveCarte){
+                System.out.println("Le serviteur n'est pas sur le plateau");
+                trouveCarte = true;
+                trouveCible = true;
+            }else{
+                if(!trouveCible){
+                    System.out.println("Le serviteur ciblé n'est pas sur le plateau");
+                    trouveCarte = trouveCible = true;
+                }
             }
-
         }
     }
 

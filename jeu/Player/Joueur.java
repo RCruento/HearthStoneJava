@@ -1,15 +1,10 @@
 package jeu.Player;
 
-import jeu.Capacites.*;
-import jeu.Capacites.CapacitesJaina.*;
-import jeu.Capacites.CapacitesRexxar.*;
-import jeu.Carte.Carte;
+
 import jeu.Carte.ICarte;
 import jeu.Carte.Serviteur;
-import jeu.Carte.Sort;
 import jeu.Exception.HearthstoneException;
 import jeu.Heros.Heros;
-import jeu.Plateau.IPlateau;
 import jeu.Plateau.Plateau;
 
 import java.util.ArrayList;
@@ -209,6 +204,11 @@ public class Joueur implements IJoueur {
         for (ICarte carte : this.cartesEnJeu) {
             carte.executerEffetFinTour();
         }
+        for(ICarte carteS : this.getJeu()){
+            System.out.println("endormis = "+((Serviteur)carteS).getAttaquer() );
+                ((Serviteur)carteS).reveiller();
+                System.out.println("endormis = "+((Serviteur)carteS).getAttaquer() );
+        }
     }
 
     public void jouerCarte(ICarte carte) throws HearthstoneException {
@@ -253,7 +253,7 @@ public class Joueur implements IJoueur {
 
     public void utiliserCarte(ICarte carte, Object cible) throws HearthstoneException {
         if(cartesEnJeu.contains(carte)){
-            ((Serviteur)carte).executerAction(cible);
+            carte.executerAction(cible);
         }
     }
 

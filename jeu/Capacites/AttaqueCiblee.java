@@ -20,10 +20,6 @@ public class AttaqueCiblee extends Capacite{
         return degat;
     }
 
-    public void setDegat(int degat) {
-        this.degat = degat;
-    }
-
     public void executerAction(Object cible) throws HearthstoneException {
         if (cible == null){
             throw new IllegalArgumentException("Cible nulle");
@@ -57,7 +53,7 @@ public class AttaqueCiblee extends Capacite{
                     }
                 }
                 super.setServis(true);
-                if(((Serviteur) Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getCarteEnJeu((((Serviteur) cible).getNomCarte()))).disparait()){
+                if(( Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getCarteEnJeu((((Serviteur) cible).getNomCarte()))).disparait()){
                     Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu().remove(cible);
                 }
             }

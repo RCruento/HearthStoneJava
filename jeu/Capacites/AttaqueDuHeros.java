@@ -6,10 +6,10 @@ import jeu.Exception.HearthstoneException;
 import jeu.Heros.Heros;
 import jeu.Plateau.Plateau;
 
-public class AttauqueDuHeros extends Capacite {
+public class AttaqueDuHeros extends Capacite {
     private int degat;
 
-    public AttauqueDuHeros(String nom, String description, int degat) {
+    public AttaqueDuHeros(String nom, String description, int degat) {
         super(nom, description);
         this.degat = degat;
     }

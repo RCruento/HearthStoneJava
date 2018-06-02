@@ -66,8 +66,8 @@ public class InterfaceJouerCarte extends  Interface{
 
             }
             if(!trouve){
-                System.out.println("Entrez un nom de carte valide");
-                nomCarte = sc.nextLine();
+                System.out.println("Carte non trouvée ! Retour au menu");
+                trouve = true;
             }
 
         }
