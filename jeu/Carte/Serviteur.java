@@ -114,16 +114,15 @@ public class Serviteur extends Carte {
             throw new IllegalArgumentException("Aucune cible a attaquer");
         }
         if (this.attaquer) {
-            System.out.println("je suis dans la boucle if endormis");
+
             if (cible instanceof Heros) {
-                Heros herocible = (Heros) cible;
                 for (ICarte carte : plateau.getAdversaire(plateau.getJoueurCourant()).getJeu()) {
                     if (((Serviteur) carte).getProvocation()) {
-                        throw new HearthstoneException("Serviteur avec Provocation sur le plateau");
+                        throw new HearthstoneException("Serviteur avec Provocation sur le plateau\n");
                     }
                 }
-                herocible.blesserHero(this.attaque);
-                if (herocible.mort()) {
+                plateau.getAdversaire(plateau.getJoueurCourant()).getHeros().blesserHero(this.attaque);
+                if ( plateau.getAdversaire(plateau.getJoueurCourant()).getHeros().mort()) {
                     plateau.gagnerPartie(plateau.getJoueurCourant());
                 }
             }
@@ -133,31 +132,39 @@ public class Serviteur extends Carte {
                     serviteurcible.blesserServiteur(this.attaque);
                     this.blesserServiteur(serviteurcible.getAttaque());
                     if (serviteurcible.disparait()) {
-                        System.out.println(serviteurcible.getNomCarte() + "ciblé est mort");
+                        System.out.println(serviteurcible.getNomCarte() + "ciblé est mort\n");
                         plateau.getAdversaire(plateau.getJoueurCourant()).getJeu().remove(serviteurcible);
                     }
                     if (this.disparait()) {
-                        System.out.println("Votre serviteur" + this.getNomCarte() + "est mort");
+                        System.out.println("Votre serviteur" + this.getNomCarte() + "est mort\n");
                         plateau.getJoueurCourant().getJeu().remove(this);
                     }
                 } else {
                     for (ICarte carte : plateau.getAdversaire(plateau.getJoueurCourant()).getJeu()) {
                         if (((Serviteur) carte).getProvocation()) {
-                            throw new HearthstoneException("Serviteur avec Provocation sur le plateau");
+                            throw new HearthstoneException("Serviteur avec Provocation sur le plateau\n");
                         }
                     }
                     serviteurcible.blesserServiteur(this.attaque);
                     this.blesserServiteur(serviteurcible.getAttaque());
-                    if (serviteurcible.disparait() || this.disparait()) {
+                    if (serviteurcible.disparait() ) {
                         System.out.println(serviteurcible.getNomCarte() + "ciblé est mort\n");
                         plateau.getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu().remove(serviteurcible);
+                    }
+                    if (this.disparait()){
                         System.out.println("Votre serviteur" + this.getNomCarte() + "est mort\n");
                         plateau.getJoueurCourant().getJeu().remove(this);
                     }
                 }
             }
+        }else{
+            throw new HearthstoneException("Serviteur endormis attendez un tour");
         }
-        throw new HearthstoneException("Serviteur endormis attendez un tour");
+    }
+
+    @Override
+    public void executerEffetDebutTour() {
+
     }
 
 
@@ -176,16 +183,11 @@ public class Serviteur extends Carte {
         this.capacite.executeEffetDisparition(this);
     }
 
-    @Override
-    public void executerEffetFinTour(Object cible) throws HearthstoneException {
-        this.capacite.executerEffetFinTour();
-    }
 
     @Override
     public void executerEffetFinTour() throws HearthstoneException {
-
+        this.capacite.executerEffetFinTour();
     }
-
 
     @Override
     public String toString() {

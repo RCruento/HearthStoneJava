@@ -3,6 +3,7 @@ package jeu.Player;
 
 import jeu.Carte.ICarte;
 import jeu.Carte.Serviteur;
+import jeu.Carte.Sort;
 import jeu.Exception.HearthstoneException;
 import jeu.Heros.Heros;
 import jeu.Plateau.Plateau;
@@ -205,9 +206,9 @@ public class Joueur implements IJoueur {
             carte.executerEffetFinTour();
         }
         for(ICarte carteS : this.getJeu()){
-            System.out.println("endormis = "+((Serviteur)carteS).getAttaquer() );
+            System.out.println("attaquer = "+((Serviteur)carteS).getAttaquer() + " "+carteS.getNomCarte() );
                 ((Serviteur)carteS).reveiller();
-                System.out.println("endormis = "+((Serviteur)carteS).getAttaquer() );
+                System.out.println("attaquer = "+((Serviteur)carteS).getAttaquer()+ " "+ carteS.getNomCarte() );
         }
     }
 
@@ -228,12 +229,11 @@ public class Joueur implements IJoueur {
             this.getMain().remove(carte);
             carte.executerEffetDebutMiseEnJeu(carte);
         }
-
     }
 
     public void perdreCarte(ICarte carte) throws HearthstoneException {
         if(cartesEnJeu.contains(carte)){
-            delCarteJeu(carte);
+            cartesEnJeu.remove(carte);
         }
         throw new HearthstoneException("Carte non sur le plateau");
     }
@@ -253,7 +253,12 @@ public class Joueur implements IJoueur {
 
     public void utiliserCarte(ICarte carte, Object cible) throws HearthstoneException {
         if(cartesEnJeu.contains(carte)){
-            carte.executerAction(cible);
+            ((Serviteur)carte).executerAction(cible);
+        }
+        if(cartesMain.contains(carte)){
+            if(carte instanceof Sort){
+
+            }
         }
     }
 

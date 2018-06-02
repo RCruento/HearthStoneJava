@@ -23,26 +23,27 @@ public class AttaqueTotale extends Capacite {
 
     @Override
     public void executerAction(Object cible) throws HearthstoneException {
-        if (getServis()) {
-            throw new HearthstoneException("Capacité attaque total deja utilisée");
-        }
-        for (ICarte carte : Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu()
-                ) {
-            ((Serviteur) carte).blesserServiteur(this.degat);
-        }
-        super.setServis(true);
-        for (ICarte carte : Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu()
-                ) {
-            if (((Serviteur) carte).disparait()) {
-                Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu().remove(carte);
-            }
-        }
+
 
     }
 
     @Override
-    public void executerEffetDebutTour(){
-
+    public void executerEffetDebutTour() throws HearthstoneException {
+        Plateau plateau = Plateau.getInstance();
+        if (getServis()) {
+            throw new HearthstoneException("Capacité attaque total deja utilisée");
+        }
+        for (ICarte carte : plateau.getAdversaire(plateau.getJoueurCourant()).getJeu()
+                ) {
+            ((Serviteur) carte).blesserServiteur(this.degat);
+        }
+        super.setServis(true);
+        for (ICarte carte : plateau.getAdversaire(plateau.getJoueurCourant()).getJeu()
+                ) {
+            if (((Serviteur) carte).disparait()) {
+                plateau.getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu().remove(carte);
+            }
+        }
     }
 
     @Override

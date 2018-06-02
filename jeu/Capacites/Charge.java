@@ -8,7 +8,7 @@ import jeu.Plateau.Plateau;
 public final class Charge extends Capacite  {
 
     public Charge(){
-        super("Charge", "Cette capacité permet a un serviteur de pas attendre");
+        super("Charge", "Cette capacité permet a un serviteur de ne pas attendre un tour pour attaquer");
         this.setServis(true);
     }
 

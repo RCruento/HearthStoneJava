@@ -8,9 +8,6 @@ public abstract class Capacite implements ICapacite {
     private boolean servis = false;
 
     public  Capacite(String nom, String description){
-        if(nom == null || nom.equals("")|| nom.isEmpty()){
-            throw  new IllegalArgumentException("Nom capacité non valide");
-        }
         this.setNom(nom);
         this.setDescription(description);
     }
@@ -41,7 +38,7 @@ public abstract class Capacite implements ICapacite {
 
     //Methods
     public String toString(){
-        return "capacité : "+this.nom+" description : "+this.description;
+        return "capacité :  "+this.nom+"  description :  "+this.description;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package jeu.Carte;
 
+import jeu.Exception.HearthstoneException;
 import jeu.Player.IJoueur;
 
 
@@ -48,6 +49,10 @@ public abstract class Carte implements ICarte {
     public void setCout(int mana){
         this.cout = mana;
     }
+
+    public abstract void executerEffetDebutTour(Object cible) throws HearthstoneException;
+
+    public abstract void executerEffetFinTour() throws HearthstoneException;
 
     //Methods
     public String toString(){

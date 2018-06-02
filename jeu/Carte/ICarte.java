@@ -7,14 +7,13 @@ import jeu.Player.IJoueur;
 public interface ICarte  {
     boolean disparait();
     void    executerAction(Object cible) throws HearthstoneException;
+    void executerEffetDebutTour();
     void    executerEffetDebutMiseEnJeu(Object cible)throws HearthstoneException;
-    void    executerEffetDebutTour(Object cible)throws HearthstoneException;
     void    executerEffetDisparition(Object cible)throws HearthstoneException;
-    void    executerEffetFinTour(Object cible)throws HearthstoneException;
+    void    executerEffetFinTour()throws HearthstoneException;
     int     getCout();
     String  getNomCarte();
     IJoueur getProprietaire();
 
 
-    void executerEffetFinTour() throws HearthstoneException;
 }

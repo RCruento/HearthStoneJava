@@ -31,34 +31,41 @@ public class InterfaceJouerCarte extends  Interface{
         while(!trouve){
             for (ICarte carte : p.getJoueurCourant().getMain()) {
                 if (carte.getNomCarte().contains(nomCarte)) {
-                    if(carte instanceof Serviteur){
+                    if (carte instanceof Serviteur) {
                         trouve = true;
                         p.getJoueurCourant().jouerCarte(carte);
                         break;
-                    }else{
-                        if(carte instanceof Sort){
-                            if (((Sort) carte).getCapacite().getDescription().contains("Inflige")){
+                    } else {
+                        if (carte instanceof Sort) {
+                            if (((Sort) carte).getCapacite().getDescription().contains("personnage")) {
                                 System.out.println("Carte sort d'attaque ? Saisir cible !");
                                 String nomCible = sc.nextLine();
-                                if(p.getAdversaire(p.getJoueurCourant()).getHeros().getNomHeros().contains(nomCible)){
-                                    carte.executerAction(p.getAdversaire(p.getJoueurCourant()).getHeros());
+                                if (p.getAdversaire(p.getJoueurCourant()).getHeros().getNomHeros().contains(nomCible)) {
+                                   ((Sort) carte).getCapacite().executerAction(p.getAdversaire(p.getJoueurCourant()).getHeros());
                                     trouve = true;
                                 }
                                 while (!trouve) {
                                     for (ICarte carteA : p.getAdversaire(p.getJoueurCourant()).getJeu()) {
                                         if (carteA.getNomCarte().contains((nomCible))) {
-                                            carte.executerAction(carteA);
+                                            ((Sort) carte).getCapacite().executerAction(carteA);
+                                            p.getJoueurCourant().getMain().remove(carte);
                                             trouve = true;
                                             break;
                                         }
                                     }
-                                    if(!trouve){
+                                    if (!trouve) {
                                         System.out.println("Saisir une cible valide!");
-                                        nomCible = sc.nextLine();
+
                                     }
                                 }
-                            }else{
-                                p.getJoueurCourant().jouerCarte(carte);
+                            }
+                            if (((Sort) carte).getCapacite().getDescription().contains("a tous")){
+                                ((Sort) carte).getCapacite().executerEffetDebutTour();
+                                p.getJoueurCourant().getMain().remove(carte);
+                            }
+                            if(((Sort) carte).getCapacite().getDescription().contains("hero")){
+                                ((Sort) carte).getCapacite().executerAction(p.getAdversaire(p.getJoueurCourant()).getHeros());
+                                p.getJoueurCourant().getMain().remove(carte);
                             }
                         }
                     }

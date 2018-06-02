@@ -64,7 +64,7 @@ public class Plateau implements IPlateau {
 
     @Override
     public void gagnerPartie(IJoueur joueur) {
-        if(getAdversaire(getJoueurCourant()).getHeros().mort()){
+        if (getAdversaire(getJoueurCourant()).getHeros().mort()) {
             this.debuter = false;
             System.out.println("Player : " + joueur.getPseudo() + " a gagné la partie");
             System.exit(0);
@@ -73,12 +73,12 @@ public class Plateau implements IPlateau {
 
     @Override
     public void finirTour(IJoueur joueur) throws HearthstoneException {
-        this.joueurCourant.finirTour();
-        if(!this.getAdversaire(this.getJoueurCourant()).getHeros().mort()){
+
+        if (!this.getAdversaire(this.getJoueurCourant()).getHeros().mort()) {
+            this.joueurCourant.finirTour();
             this.setJoueurCourant(getAdversaire(this.joueurCourant));
             this.getJoueurCourant().piocher();
-
-        }else{
+        } else {
             this.gagnerPartie(joueur);
         }
 
@@ -113,8 +113,8 @@ public class Plateau implements IPlateau {
     public String toString() {
         if (this.getJoueurCourant().getJeu().size() == 0 && this.getAdversaire(this.getJoueurCourant()).getJeu().size() == 0) {
             return
-                    this.getAdversaire(this.joueurCourant).getPseudo()+this.getAdversaire(this.joueurCourant).getHeros()+"\n"+
-                    "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n" +
+                    "Adversaire : " + this.getAdversaire(this.joueurCourant).getPseudo() + "  " + this.getAdversaire(this.joueurCourant).getHeros() + "\n" +
+                            "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n" +
                             "|                                                                                                                                                                                                                                                                                                                    |\n" +
                             "|                                                                                                                                                                                                                                                                                                                    |\n" +
                             "|" + "                                                                |\n" +
@@ -135,8 +135,8 @@ public class Plateau implements IPlateau {
                             this.joueurCourant.toString();
         } else if (this.getJoueurCourant().getJeu().size() != 0 && this.getAdversaire(this.getJoueurCourant()).getJeu().size() == 0) {
             return
-                    this.getAdversaire(this.joueurCourant).getPseudo()+this.getAdversaire(this.joueurCourant).getHeros()+"\n"+
-                    "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n" +
+                    "Adversaire : " + this.getAdversaire(this.joueurCourant).getPseudo() + "  " + this.getAdversaire(this.joueurCourant).getHeros() + "\n" +
+                            "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n" +
                             "|                                                                                                                                                                                                                                                                                                                    |\n" +
                             "|                                                                                                                                                                                                                                                                                                                    |\n" +
                             "|" + "                                                                |\n" +
@@ -158,8 +158,8 @@ public class Plateau implements IPlateau {
 
         } else if (this.getJoueurCourant().getJeu().size() == 0 && this.getAdversaire(this.getJoueurCourant()).getJeu().size() != 0) {
             return
-                    this.getAdversaire(this.joueurCourant).getPseudo()+this.getAdversaire(this.joueurCourant).getHeros()+"\n"+
-                    "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n" +
+                    "Adversaire : " + this.getAdversaire(this.joueurCourant).getPseudo() + "  " + this.getAdversaire(this.joueurCourant).getHeros() + "\n" +
+                            "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n" +
                             "|                                                                                                                                                                                                                                                                                                                    |\n" +
                             "|                                                                                                                                                                                                                                                                                                                    |\n" +
                             "|" + this.getAdversaire(this.getJoueurCourant()).afficherJeu() + "                                                                |\n" +
@@ -181,7 +181,7 @@ public class Plateau implements IPlateau {
 
         }
         return
-                this.getAdversaire(this.joueurCourant).getPseudo()+this.getAdversaire(this.joueurCourant).getHeros()+"\n"+
+                "Adversaire : " + this.getAdversaire(this.joueurCourant).getPseudo() + "  " + this.getAdversaire(this.joueurCourant).getHeros() + "\n" +
                         "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n" +
                         "|                                                                                                                                                                                                                                                                                                                    |\n" +
                         "|                                                                                                                                                                                                                                                                                                                    |\n" +
@@ -204,6 +204,4 @@ public class Plateau implements IPlateau {
 
 
     }
-
-
 }
