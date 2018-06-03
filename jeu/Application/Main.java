@@ -6,7 +6,6 @@ import jeu.Capacites.CapacitesJaina.Miroir;
 import jeu.Capacites.CapacitesRexxar.BrusardAffame;
 import jeu.Capacites.CapacitesRexxar.Chiens;
 import jeu.Capacites.CapacitesRexxar.MarqueDuChasseur;
-import jeu.Capacites.CapacitesRexxar.OrdreDeTuer;
 import jeu.Carte.Carte;
 import jeu.Carte.ICarte;
 import jeu.Carte.Serviteur;
@@ -24,7 +23,6 @@ import java.util.Scanner;
 
 
 public class Main {
-    public static Console es = new Console();
     public static Interface ihm = null;
 
     public static void main(String[] args) throws HearthstoneException {
@@ -72,7 +70,7 @@ public class Main {
         ICarte CSoR3 = new Sort(Demos, "Lâchez les chiens", 3,
                 new Chiens());
         ICarte CSoR5 = new Sort(Demos, "Ordre de tuer", 3,
-                new OrdreDeTuer());
+                new AttaqueCiblee("Ordre de tuer", "Inflige 3 points de degats au personnage ciblé", 3));
         Demos.getDeck().add(CSeR);
         Demos.getDeck().add(CSoR1);
         Demos.getDeck().add(CSoR2);

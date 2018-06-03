@@ -48,15 +48,18 @@ public abstract class Piocher extends Capacite{
 
     @Override
     public void executeEffetMiseEnjeu(Object cible) throws HearthstoneException {
+        Plateau plateau = Plateau.getInstance();
         if(cible instanceof Sort) {
             for (int i = 0; i < this.nbpioche; i++) {
-                Plateau.getInstance().getJoueurCourant().piocher();
+                plateau.getJoueurCourant().piocher();
             }
-            Plateau.getInstance().getJoueurCourant().getJeu().remove(cible);
+            plateau.getJoueurCourant().getJeu().remove(cible);
+            plateau.getJoueurCourant().getMain().remove(cible);
+
 
         }else{
             for (int i = 0; i < this.nbpioche; i++) {
-                Plateau.getInstance().getJoueurCourant().piocher();
+                plateau.getJoueurCourant().piocher();
             }
         }
 

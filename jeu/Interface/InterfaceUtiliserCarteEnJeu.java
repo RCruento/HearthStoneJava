@@ -3,7 +3,6 @@ package jeu.Interface;
 import jeu.Carte.ICarte;
 import jeu.Exception.HearthstoneException;
 import jeu.Plateau.IPlateau;
-
 import java.util.Scanner;
 
 public class InterfaceUtiliserCarteEnJeu extends Interface {
@@ -18,16 +17,55 @@ public class InterfaceUtiliserCarteEnJeu extends Interface {
 
     @Override
     public void executerRequete(IPlateau p) throws HearthstoneException {
-        boolean trouve = false;
         boolean trouveCarte = false;
         boolean trouveCible = false;
-        String nomCible;
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Quel Serviteur veux-tu utiliser ?");
         String nomCarte = sc.nextLine();
 
-        while(!trouveCarte && !trouveCible){
+        while (!trouveCarte){
+            for (ICarte carteSelectionne : p.getJoueurCourant().getJeu()){
+                if(carteSelectionne.getNomCarte().contains(nomCarte)){
+                    System.out.println("Selectionnée une cible");
+                    String nomCible = sc.nextLine();
+                    while (!trouveCible){
+                        if (p.getAdversaire(p.getJoueurCourant()).getHeros().getNomHeros().contains(nomCible)){
+                            trouveCible = true;
+                            trouveCarte = true;
+                            p.getJoueurCourant().utiliserCarte(carteSelectionne,p.getAdversaire(p.getJoueurCourant()).getHeros());
+                            //p.getAdversaire(p.getJoueurCourant()).getHeros().blesserHero(((Serviteur)carteSelectionne).getAttaque());
+
+                            break;
+                        }
+                        for(ICarte carteSCible : p.getAdversaire(p.getJoueurCourant()).getJeu()){
+                            if (carteSCible.getNomCarte().contains(nomCible)){
+                                trouveCible = true;
+                                trouveCarte = true;
+                                p.getJoueurCourant().utiliserCarte(carteSelectionne, carteSCible);
+
+                                break;
+                            }
+                        }
+                        if(!trouveCible){
+                            System.out.println("L'a choisis n'existe pas retour au menu");
+                            trouveCible = true;
+                            trouveCarte = true;
+                        }
+                    }
+                }
+            }
+            if(!trouveCarte){
+                System.out.println("Le serviteur choisis n'est pas sur le plateau retour au menu");
+                trouveCible = true;
+                trouveCarte = true;
+            }
+        }
+
+
+
+
+        /*while(!trouveCarte && !trouveCible){
             for(ICarte carteS : p.getJoueurCourant().getJeu()){
                 if(carteS.getNomCarte().contains(nomCarte)){
                     trouveCarte = true;
@@ -37,7 +75,8 @@ public class InterfaceUtiliserCarteEnJeu extends Interface {
                         trouveCible = true;
                         p.getJoueurCourant().utiliserCarte(carteS, p.getAdversaire(p.getJoueurCourant()).getHeros().getNomHeros());
                         break;
-                    }else{
+                    }
+                    if(){
                         for(ICarte carteScible: p.getAdversaire(p.getJoueurCourant()).getJeu()){
                             if (carteScible.getNomCarte().contains(nomCible)){
                                 trouveCible = true;
@@ -59,7 +98,7 @@ public class InterfaceUtiliserCarteEnJeu extends Interface {
                     trouveCarte = trouveCible = true;
                 }
             }
-        }
+        }*/
     }
 
     @Override

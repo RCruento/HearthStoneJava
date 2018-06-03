@@ -1,6 +1,5 @@
 package jeu.Capacites;
 
-import javafx.print.PageLayout;
 import jeu.Carte.Serviteur;
 import jeu.Carte.Sort;
 import jeu.Exception.HearthstoneException;
@@ -46,11 +45,15 @@ public abstract class InvocationDeServiteur extends Capacite {
 
     @Override
     public void executeEffetMiseEnjeu(Object cible) throws HearthstoneException {
+        Plateau plateau = Plateau.getInstance();
         for(int i=0; i<this.nombreInvocation; i++){
-            Plateau.getInstance().getJoueurCourant().getJeu().add(this.invocation);
+            plateau.getJoueurCourant().getMain().add(this.invocation);
+            plateau.getJoueurCourant().jouerCarte(this.invocation);
         }
         if(cible instanceof Sort){
-            Plateau.getInstance().getJoueurCourant().getJeu().remove(cible);
+            plateau.getJoueurCourant().getJeu().remove(cible);
+            plateau.getJoueurCourant().getMain().remove(cible);
+
         }
 
     }

@@ -1,21 +1,19 @@
 package jeu.Player;
 
-
 import jeu.Carte.ICarte;
 import jeu.Carte.Serviteur;
 import jeu.Carte.Sort;
 import jeu.Exception.HearthstoneException;
 import jeu.Heros.Heros;
 import jeu.Plateau.Plateau;
-
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Joueur implements IJoueur {
     private String pseudo;
     private Heros heros;
-    private int mana = 100;
-    private int stockMana = 100;
+    private int mana = 0;
+    private int stockMana = 0;
     private ArrayList<ICarte> deck = new ArrayList<>();
     private ArrayList<ICarte> cartesMain= new ArrayList<>();
     private ArrayList<ICarte> cartesEnJeu = new ArrayList<>();
@@ -27,7 +25,7 @@ public class Joueur implements IJoueur {
     }
 
     //Getter & Setter
-        //Getter
+
     public String getPseudo(){
         return this.pseudo;
     }
@@ -74,7 +72,6 @@ public class Joueur implements IJoueur {
         return this.cartesEnJeu;
     }
 
-    //Setter
     public void setPseudo(String pseudo){
         if (pseudo != null){
             this.pseudo = pseudo;
@@ -171,6 +168,7 @@ public class Joueur implements IJoueur {
             this.mana = stockMana;
         }else{
             this.mana = 10;
+            this.stockMana = 10;
         }
     }
 
@@ -201,17 +199,6 @@ public class Joueur implements IJoueur {
         return res+="              "+"}]\n";
     }
 
-    public void finirTour() throws HearthstoneException {
-        for (ICarte carte : this.cartesEnJeu) {
-            carte.executerEffetFinTour();
-        }
-        for(ICarte carteS : this.getJeu()){
-            System.out.println("attaquer = "+((Serviteur)carteS).getAttaquer() + " "+carteS.getNomCarte() );
-                ((Serviteur)carteS).reveiller();
-                System.out.println("attaquer = "+((Serviteur)carteS).getAttaquer()+ " "+ carteS.getNomCarte() );
-        }
-    }
-
     public void jouerCarte(ICarte carte) throws HearthstoneException {
         if (carte == null) {
             throw new IllegalArgumentException("Aucune carte");
@@ -239,16 +226,29 @@ public class Joueur implements IJoueur {
     }
 
     public void piocher() {
-        Random rd = new Random();
-        int alea = rd.nextInt(this.deck.size());
-        addCarteMain(deck.get(alea));
-        delCarteDeck(deck.get(alea));
+        if(this.deck.size() != 0) {
+            Random rd = new Random();
+            int alea = rd.nextInt(this.deck.size());
+            addCarteMain(deck.get(alea));
+            delCarteDeck(deck.get(alea));
+        }
     }
 
     public void prendreTour() {
-        this.piocher();
         Plateau.getInstance().setJoueurCourant(this);
+        this.ajouterMana();
+        this.piocher();
+    }
 
+    public void finirTour() throws HearthstoneException {
+        for (ICarte carte : this.cartesEnJeu) {
+            if(((Serviteur)carte).getCapacite() != null) {
+                carte.executerEffetFinTour();
+            }
+        }
+        for(ICarte carteS : this.getJeu()){
+            ((Serviteur)carteS).reveiller();
+        }
     }
 
     public void utiliserCarte(ICarte carte, Object cible) throws HearthstoneException {

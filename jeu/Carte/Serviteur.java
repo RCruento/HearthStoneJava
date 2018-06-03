@@ -131,6 +131,7 @@ public class Serviteur extends Carte {
                 if (serviteurcible.getProvocation()) {
                     serviteurcible.blesserServiteur(this.attaque);
                     this.blesserServiteur(serviteurcible.getAttaque());
+                    this.attaquer = false;
                     if (serviteurcible.disparait()) {
                         System.out.println(serviteurcible.getNomCarte() + "ciblé est mort\n");
                         plateau.getAdversaire(plateau.getJoueurCourant()).getJeu().remove(serviteurcible);
@@ -146,6 +147,7 @@ public class Serviteur extends Carte {
                         }
                     }
                     serviteurcible.blesserServiteur(this.attaque);
+                    this.attaquer = false;
                     this.blesserServiteur(serviteurcible.getAttaque());
                     if (serviteurcible.disparait() ) {
                         System.out.println(serviteurcible.getNomCarte() + "ciblé est mort\n");
@@ -186,7 +188,7 @@ public class Serviteur extends Carte {
 
     @Override
     public void executerEffetFinTour() throws HearthstoneException {
-        this.capacite.executerEffetFinTour();
+
     }
 
     @Override

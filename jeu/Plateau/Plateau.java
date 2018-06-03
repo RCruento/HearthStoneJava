@@ -1,7 +1,5 @@
 package jeu.Plateau;
 
-import jeu.Carte.ICarte;
-import jeu.Carte.Serviteur;
 import jeu.Exception.HearthstoneException;
 import jeu.Player.IJoueur;
 import java.util.ArrayList;
@@ -64,7 +62,7 @@ public class Plateau implements IPlateau {
 
     @Override
     public void gagnerPartie(IJoueur joueur) {
-        if (getAdversaire(getJoueurCourant()).getHeros().mort()) {
+        if (getAdversaire(joueur).getHeros().mort()) {
             this.debuter = false;
             System.out.println("Player : " + joueur.getPseudo() + " a gagné la partie");
             System.exit(0);
@@ -76,7 +74,7 @@ public class Plateau implements IPlateau {
 
         if (!this.getAdversaire(this.getJoueurCourant()).getHeros().mort()) {
             this.joueurCourant.finirTour();
-            this.setJoueurCourant(getAdversaire(this.joueurCourant));
+            this.getAdversaire(this.getJoueurCourant()).prendreTour();
             this.getJoueurCourant().piocher();
         } else {
             this.gagnerPartie(joueur);

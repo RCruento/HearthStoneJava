@@ -67,6 +67,7 @@ public class InterfaceJouerCarte extends  Interface{
                                 ((Sort) carte).getCapacite().executerAction(p.getAdversaire(p.getJoueurCourant()).getHeros());
                                 p.getJoueurCourant().getMain().remove(carte);
                             }
+                            ((Sort)carte).executerEffetDebutMiseEnJeu(carte);
                         }
                     }
                 }
@@ -78,22 +79,6 @@ public class InterfaceJouerCarte extends  Interface{
             }
 
         }
-
-
-
-
-        /*
-        while (p.getJoueurCourant().getMain().)
-            p.getJoueurCourant()
-        }
-        try {
-
-            p.getJoueurCourant().jouerCarte(carte);
-
-        } catch (HearthstoneException e) {
-            System.out.println(e.getMessage());
-        }
-        */
     }
 
     @Override

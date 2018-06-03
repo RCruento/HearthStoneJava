@@ -33,8 +33,7 @@ public class AttaqueTotale extends Capacite {
         if (getServis()) {
             throw new HearthstoneException("Capacité attaque total deja utilisée");
         }
-        for (ICarte carte : plateau.getAdversaire(plateau.getJoueurCourant()).getJeu()
-                ) {
+        for (ICarte carte : plateau.getAdversaire(plateau.getJoueurCourant()).getJeu()) {
             ((Serviteur) carte).blesserServiteur(this.degat);
         }
         super.setServis(true);
