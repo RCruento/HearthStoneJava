@@ -24,17 +24,19 @@ public class InterfaceUtiliserPouvoirHero extends Interface {
         System.out.println("Sur qui utiliser le pouvoir du heros ?");
         String nomCible = sc.nextLine();
 
-        if (p.getAdversaire(p.getJoueurCourant()).getHeros().getNomHeros().contains(nomCible))
-            p.getJoueurCourant().getHeros().getPouvoir().executerAction(p.getAdversaire(p.getJoueurCourant()).getHeros());
-            if(p.getAdversaire(p.getJoueurCourant()).getHeros().mort()){
-                p.gagnerPartie(p.getJoueurCourant());
+        if (p.getAdversaire(p.getJoueurCourant()).getHeros().getNomHeros().contains(nomCible)) {
+            if ( p.getJoueurCourant().getMana() > 0) {
+                p.getJoueurCourant().getHeros().getPouvoir().executerAction(p.getAdversaire(p.getJoueurCourant()).getHeros());
+
+                if (p.getAdversaire(p.getJoueurCourant()).getHeros().mort()) {
+                    p.gagnerPartie(p.getJoueurCourant());
+                }
+            }else{
+                throw new HearthstoneException("Pas assez de mana retour au menu");
             }
-
-        else {
-
+        }else {
             cible = p.getAdversaire(p.getJoueurCourant()).getCarteEnJeu(nomCible);
             p.getJoueurCourant().getHeros().getPouvoir().executerAction(cible);
-
         }
     }
 

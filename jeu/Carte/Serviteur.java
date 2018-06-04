@@ -5,7 +5,13 @@ import jeu.Capacites.ICapacite;
 import jeu.Exception.HearthstoneException;
 import jeu.Heros.Heros;
 import jeu.Plateau.Plateau;
-import jeu.Player.IJoueur;
+import jeu.Joueur.IJoueur;
+/**
+ * Classe Serviteur sert a representer un serviteur, celle-ci hérite de Carte
+ * @author Rayan Koussa
+ * @version  0.1
+ * @see Carte
+ */
 
 public class Serviteur extends Carte {
     private int attaque;
@@ -83,22 +89,47 @@ public class Serviteur extends Carte {
 
     // Methods
 
-
+    /**
+     * Permet a un serviteur de pouvoir attaquer apres la fin du temps d'attente
+     *
+     * @return void
+     *
+     */
     public void reveiller(){
         this.attaquer = true;
     }
+
+    /**
+     * Le serviteur subis les degats d'un serviteur adverse
+     * @param degat
+     *
+     */
     public void blesserServiteur(int degat){
         this.sante = this.sante - degat;
     }
 
+    /**
+     * Le serviteur reçoit un bonus santé equivalent au parametre
+     * @param bonus
+     *
+     */
     public void bonusSante(int bonus){
         this.sante += bonus;
     }
 
+    /**
+     * Le serviteur reçoit un bonus d'attaque equivalent au parametre
+     * @param bonus
+     */
     public void bonusAttaque(int bonus){
         this.attaque += bonus;
     }
 
+    /**
+     * Permet de savoir si un serviteur doit être enlevé du plateau ou non
+     * @return true si les point de vie du serviteur = 0, false sinon
+     *
+     */
     @Override
     public boolean disparait() {
         if(this.sante <= 0){
@@ -107,6 +138,12 @@ public class Serviteur extends Carte {
         return false;
     }
 
+    /**
+     * Permet a un serviteur d'attaquer une cible
+     * @param cible
+     * @throws HearthstoneException en cas d'erreur sur la cible
+     * @deprecated cibler doit etre different de {null, Plateau, Sort }
+     */
     @Override
     public void executerAction(Object cible) throws HearthstoneException {
         Plateau plateau = Plateau.getInstance();
@@ -164,33 +201,61 @@ public class Serviteur extends Carte {
         }
     }
 
+    /**
+     * Permet d'executer la capacité d'un serviteur au debut du tour
+     */
     @Override
     public void executerEffetDebutTour() {
 
     }
 
 
+    /**
+     * Execute la capacité d'un serviteur dès ça mise en jeu
+     * @param cible le serviteur lui meme
+     * @throws HearthstoneException
+     * @deprecated Eviter d'utiliser une capacité nulle
+     */
     @Override
     public void executerEffetDebutMiseEnJeu(Object cible) throws HearthstoneException {
         this.capacite.executeEffetMiseEnjeu(this);
     }
 
+    /**
+     *Execute la capacité d'un serviteur au début du tour
+     * @param cible le serviteur lui meme
+     * @throws HearthstoneException
+     * @deprecated Eviter d'utiliser une capacité nulle
+     */
     @Override
     public void executerEffetDebutTour(Object cible) throws HearthstoneException {
         this.capacite.executerEffetDebutTour();
     }
 
+    /**
+     *Execute la capacité du serviteur à ça mort
+     * @param cible
+     * @throws HearthstoneException
+     * @deprecated Eviter d'utiliser une capacité nulle
+     */
     @Override
     public void executerEffetDisparition(Object cible) throws HearthstoneException {
         this.capacite.executeEffetDisparition(this);
     }
 
-
+    /**
+     *Execute la capacité du serviteur a la fin du tour
+     * @throws HearthstoneException
+     */
     @Override
     public void executerEffetFinTour() throws HearthstoneException {
 
     }
 
+    /**
+     * Permet d'afficher la classe Serviteur
+     * @return chaine de caractère
+     */
     @Override
     public String toString() {
         return "Serviteur{"+ this.getNomCarte() +", Mana : "+this.getCout()+

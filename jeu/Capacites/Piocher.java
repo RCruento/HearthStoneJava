@@ -2,12 +2,14 @@ package jeu.Capacites;
 
 import jeu.Carte.Sort;
 import jeu.Exception.HearthstoneException;
-import jeu.Plateau.IPlateau;
 import jeu.Plateau.Plateau;
-import jeu.Player.IJoueur;
-import jeu.Player.Joueur;
 
-
+/**
+ * Classe Priocher represente la capacité Piocher d'une carte. Hérite de Capacité
+ * @author  Rayan KOUSSA
+ * @version 0.1
+ * @see Capacite
+ */
 public abstract class Piocher extends Capacite{
     private int nbpioche;
 
@@ -25,27 +27,52 @@ public abstract class Piocher extends Capacite{
         this.nbpioche = nbpioche;
     }
 
+    //methodes
+
+    /**
+     * Ce cas n'arrivera jamais
+     * @param cible
+     * @throws HearthstoneException
+     */
     @Override
     public void executerAction(Object cible) throws HearthstoneException {
 
 
     }
 
+    /**
+     * Ce cas n'arrivera jamais
+     * @throws HearthstoneException
+     */
     @Override
     public void executerEffetDebutTour() throws HearthstoneException {
 
     }
 
+    /**
+     * Ce cas n'arrivera jamais
+     * @param cible
+     * @throws HearthstoneException
+     */
     @Override
     public void executeEffetDisparition(Object cible) throws HearthstoneException {
 
     }
 
+    /**
+     * Ce cas n'arrivera jamais
+     * @throws HearthstoneException
+     */
     @Override
     public void executerEffetFinTour() throws HearthstoneException {
 
     }
 
+    /**
+     * Permet a la carte qui possede cette capacité de piocher
+     * @param cible
+     * @throws HearthstoneException
+     */
     @Override
     public void executeEffetMiseEnjeu(Object cible) throws HearthstoneException {
         Plateau plateau = Plateau.getInstance();
@@ -65,6 +92,10 @@ public abstract class Piocher extends Capacite{
 
     }
 
+    /**
+     * Affiche le nom et la description de la capacité
+     * @return
+     */
     @Override
     public String toString() {
         return "Piocher{" +

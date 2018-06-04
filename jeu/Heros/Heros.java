@@ -4,6 +4,11 @@ import jeu.Capacites.ICapacite;
 
 import java.util.Objects;
 
+/**
+ * Classe Heros representant le Heros avec lequel le joueur joue
+ * @author  Rayan KOUSSA
+ * @version 0.1
+ */
 public class Heros  {
 
     private  String heros;
@@ -43,10 +48,18 @@ public class Heros  {
 
     //Methods
 
+    /**
+     * Le Heros subit les degats d'une attaque
+     * @param degat
+     */
     public void blesserHero(int degat){
         this.sante = this.sante - degat;
     }
 
+    /**
+     * Verifie si le Heros a 0 point de vie et donc mort
+     * @return true si le heros est mort, false sinon
+     */
     public boolean mort(){
         if(this.sante <= 0){
             return true;
@@ -54,6 +67,10 @@ public class Heros  {
         return false;
     }
 
+    /**
+     * Retourne les parametre de la classe Heros en chaine de caractères
+     * @return String(chaine de caractère)
+     */
     @Override
     public String toString() {
         return "Heros{" + heros +
@@ -62,6 +79,11 @@ public class Heros  {
                 '}';
     }
 
+    /**
+     * Vérifie si un heros = un autre heros
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

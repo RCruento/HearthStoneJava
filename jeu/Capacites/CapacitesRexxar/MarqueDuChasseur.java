@@ -5,11 +5,23 @@ import jeu.Carte.Serviteur;
 import jeu.Exception.HearthstoneException;
 import jeu.Plateau.Plateau;
 
+/**
+ * Classe MarqueDuChasser representant une capacité. Herite de Capacité
+ * @author Rayan KOUSSA
+ * @version 0.1
+ * @see  Capacite
+ */
 public class MarqueDuChasseur extends Capacite {
     public MarqueDuChasseur() {
         super("Marque du chasseur", "Reduit les point de vie a 1");
     }
 
+    /**
+     * Reduit les points de vie d'un serviteur a 1
+     * @param cible serviteur
+     * @throws HearthstoneException
+     * @deprecated ne cibler que des cartes serviteur
+     */
     @Override
     public void executerAction(Object cible) throws HearthstoneException {
         if(cible == null){

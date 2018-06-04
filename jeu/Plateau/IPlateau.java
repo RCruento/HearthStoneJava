@@ -1,8 +1,7 @@
 package jeu.Plateau;
 
 import jeu.Exception.HearthstoneException;
-import jeu.Player.IJoueur;
-import jeu.Player.Joueur;
+import jeu.Joueur.IJoueur;
 
 public interface IPlateau {
 

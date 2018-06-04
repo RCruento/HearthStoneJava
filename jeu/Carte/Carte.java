@@ -1,9 +1,13 @@
 package jeu.Carte;
 
 import jeu.Exception.HearthstoneException;
-import jeu.Player.IJoueur;
+import jeu.Joueur.IJoueur;
 
-
+/**
+ * Classe abstraite Carte representant une carte en général
+ * @author Rayan KOUSSA
+ * @version 0.1
+ */
 public abstract class Carte implements ICarte {
     private IJoueur owner;
     private String nom;
@@ -23,7 +27,6 @@ public abstract class Carte implements ICarte {
         this.setNom(nom);
     }
 
-
     //Getter & Setter
     public String getNomCarte(){
         return this.nom;
@@ -34,7 +37,6 @@ public abstract class Carte implements ICarte {
     public int getCout(){
         return this.cout;
     }
-
     public void setProprietaire(IJoueur owner){
         this.owner= owner;
     }
@@ -50,14 +52,33 @@ public abstract class Carte implements ICarte {
         this.cout = mana;
     }
 
+    //Methods
+
+    /**
+     * @see Sort
+     * @see Serviteur
+     */
     public abstract void executerEffetDebutTour(Object cible) throws HearthstoneException;
 
+    /**
+     *@see Sort
+     *@see Serviteur
+     * @throws HearthstoneException
+     */
     public abstract void executerEffetFinTour() throws HearthstoneException;
 
-    //Methods
+    /**
+     *@return les paramettre de la classe de la Carte en chaine de caractères
+     */
     public String toString(){
         return "Carte : " + this.nom + " Cout : " + this.cout;
     }
+
+    /**
+     *Voit si une carte = une autre
+     * @param obj
+     * @return
+     */
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;

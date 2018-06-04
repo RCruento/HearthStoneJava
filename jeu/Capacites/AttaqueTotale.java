@@ -5,6 +5,12 @@ import jeu.Carte.Serviteur;
 import jeu.Exception.HearthstoneException;
 import jeu.Plateau.Plateau;
 
+/**
+ * Classe AttaqueTotale permet d'attaquer plusieurs serviteurs ennemis à la fois. Hérite de Capacité
+ * @author Rayan KOUSSA
+ * @version 0.1
+ * @see Capacite
+ */
 public class AttaqueTotale extends Capacite {
     private int degat;
 
@@ -27,6 +33,10 @@ public class AttaqueTotale extends Capacite {
 
     }
 
+    /**
+     * Attaque tous les serviteurs sur le plateau
+     * @throws HearthstoneException
+     */
     @Override
     public void executerEffetDebutTour() throws HearthstoneException {
         Plateau plateau = Plateau.getInstance();

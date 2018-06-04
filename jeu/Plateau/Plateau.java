@@ -1,9 +1,14 @@
 package jeu.Plateau;
 
 import jeu.Exception.HearthstoneException;
-import jeu.Player.IJoueur;
+import jeu.Joueur.IJoueur;
 import java.util.ArrayList;
 
+/**
+ * Classe Plateau represenant le plateau de ou se passe la partie
+ * @author  Rayan KOUSSA
+ * @version 0.1
+ */
 
 
 public class Plateau implements IPlateau {
@@ -32,57 +37,6 @@ public class Plateau implements IPlateau {
 
     //Getter Setter
 
-    public void setPlayers(ArrayList<IJoueur> players) {
-        this.joueurs = players;
-    }
-
-    @Override
-    public void ajouterJoueur(IJoueur joueur) {
-        if (this.joueurs == null) {
-            this.joueurs = new ArrayList<>();
-        }
-        this.joueurs.add(joueur);
-    }
-
-    @Override
-    public void demarerPartie() {
-        for (int i = 0; i < 4; i++) {
-            this.joueurs.get(0).piocher();
-            this.joueurs.get(1).piocher();
-        }
-        this.getJoueurCourant().piocher();
-        System.out.println(this.joueurCourant.getHeros() + " Commence");
-        this.debuter = true;
-    }
-
-    @Override
-    public boolean estDemaree() {
-        return this.debuter;
-    }
-
-    @Override
-    public void gagnerPartie(IJoueur joueur) {
-        if (getAdversaire(joueur).getHeros().mort()) {
-            this.debuter = false;
-            System.out.println("Player : " + joueur.getPseudo() + " a gagné la partie");
-            System.exit(0);
-        }
-    }
-
-    @Override
-    public void finirTour(IJoueur joueur) throws HearthstoneException {
-
-        if (!this.getAdversaire(this.getJoueurCourant()).getHeros().mort()) {
-            this.joueurCourant.finirTour();
-            this.getAdversaire(this.getJoueurCourant()).prendreTour();
-            this.getJoueurCourant().piocher();
-        } else {
-            this.gagnerPartie(joueur);
-        }
-
-
-    }
-
     @Override
     public IJoueur getAdversaire(IJoueur courantplayer) {
         if (courantplayer == null) {
@@ -97,6 +51,10 @@ public class Plateau implements IPlateau {
         return courantplayer;
     }
 
+    public void setPlayers(ArrayList<IJoueur> players) {
+        this.joueurs = players;
+    }
+
     @Override
     public IJoueur getJoueurCourant() {
         return this.joueurCourant;
@@ -108,6 +66,80 @@ public class Plateau implements IPlateau {
     }
 
 
+    // Methodes
+
+    /**
+     * Ajoute un joueur a la partie
+     * @param joueur
+     */
+    @Override
+    public void ajouterJoueur(IJoueur joueur) {
+        if (this.joueurs == null) {
+            this.joueurs = new ArrayList<>();
+        }
+        this.joueurs.add(joueur);
+    }
+
+    /**
+     * Permet de commencer un partie
+     */
+    @Override
+    public void demarerPartie() {
+        for (int i = 0; i < 4; i++) {
+            this.joueurs.get(0).piocher();
+            this.joueurs.get(1).piocher();
+        }
+        this.getJoueurCourant().piocher();
+        System.out.println(this.joueurCourant.getHeros() + " Commence");
+        this.debuter = true;
+    }
+
+    /**
+     * Verifie si une partie a commencée
+     * @return true si elle a commencée, false sinon
+     */
+    @Override
+    public boolean estDemaree() {
+        return this.debuter;
+    }
+
+    /**
+     * Le joueur en parametre gagne la partie
+     * @param joueur Joueur courant
+     */
+    @Override
+    public void gagnerPartie(IJoueur joueur) {
+        if (getAdversaire(joueur).getHeros().mort()) {
+            this.debuter = false;
+            System.out.println("Joueur : " + joueur.getPseudo() + " a gagné la partie");
+            System.exit(0);
+        }
+    }
+
+    /**
+     * Finis le tour du joueur courant
+     * @param joueur
+     * @throws HearthstoneException
+     * @see jeu.Joueur.Joueur
+     */
+    @Override
+    public void finirTour(IJoueur joueur) throws HearthstoneException {
+
+        if (!this.getAdversaire(this.getJoueurCourant()).getHeros().mort()) {
+            this.joueurCourant.finirTour();
+            this.getAdversaire(this.getJoueurCourant()).prendreTour();
+            this.getJoueurCourant().piocher();
+        } else {
+            this.gagnerPartie(joueur);
+        }
+
+
+    }
+
+    /**
+     * Affiche le plateau
+     * @return le plateau
+     */
     public String toString() {
         if (this.getJoueurCourant().getJeu().size() == 0 && this.getAdversaire(this.getJoueurCourant()).getJeu().size() == 0) {
             return

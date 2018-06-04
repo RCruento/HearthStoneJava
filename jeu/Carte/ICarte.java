@@ -2,7 +2,7 @@ package jeu.Carte;
 
 import jeu.Exception.HearthstoneException;
 
-import jeu.Player.IJoueur;
+import jeu.Joueur.IJoueur;
 
 public interface ICarte  {
     boolean disparait();

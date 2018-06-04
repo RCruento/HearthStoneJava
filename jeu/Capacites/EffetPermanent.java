@@ -5,7 +5,11 @@ import jeu.Carte.Serviteur;
 import jeu.Exception.HearthstoneException;
 import jeu.Plateau.Plateau;
 
-
+/**
+ * Classe Effet Permenant cette capacité permet de donner un bonus au serviteur sur le plateau
+ * @author  Rayan KOUSSA
+ * @version 0.1
+ */
 
 public class EffetPermanent extends Capacite {
     private int bonusSante;

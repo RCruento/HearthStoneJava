@@ -5,6 +5,13 @@ import jeu.Exception.HearthstoneException;
 import jeu.Heros.Heros;
 import jeu.Plateau.Plateau;
 
+/**
+ * Classe Charge qui Herite de Capacité , permet au serviteur qui possede
+ * cette capacité de ne pas attendre pour attaquer
+ * @author  Rayan KOUSSA
+ * @version 0.1
+ * @see Capacite
+ */
 public final class Charge extends Capacite  {
 
     public Charge(){
@@ -31,6 +38,12 @@ public final class Charge extends Capacite  {
 
     }
 
+
+    /**
+     * Change le paramettre attaquer du serviteur et le met a true
+     * @param cible serviteur
+     * @throws HearthstoneException
+     */
     @Override
     public void executeEffetMiseEnjeu(Object cible) throws HearthstoneException {
         if(cible == null){

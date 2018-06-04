@@ -1,12 +1,18 @@
 package jeu.Carte;
 
 import jeu.Capacites.AttaqueCiblee;
+import jeu.Capacites.Capacite;
 import jeu.Capacites.ICapacite;
 import jeu.Exception.HearthstoneException;
 import jeu.Heros.Heros;
 import jeu.Plateau.Plateau;
-import jeu.Player.IJoueur;
+import jeu.Joueur.IJoueur;
 
+/**
+ * Classe Sort represente une carte de type de Sort, celle-ci hérite de Carte
+ * @author Rayan KOUSSA
+ * @version 0.1
+ */
 public class Sort extends Carte {
     private ICapacite capacite;
 
@@ -24,11 +30,23 @@ public class Sort extends Carte {
         this.capacite = capacite;
     }
 
+    //Methdes
+
+    /**
+     * Verifie si la carte disparait
+     * @return true si la carte a servis, false sinon
+     */
     @Override
     public boolean disparait() {
-        return false;
+        return ((Capacite)capacite).getServis();
     }
 
+    /**
+     * Si le sort est un sort de degat, la carte attaque une cible
+     * @param cible serviteur sur le plateau ou Heros
+     * @throws HearthstoneException
+     * @deprecated Eviter de cibler {null, Plateau, carte en main, carte dans le deck}
+     */
     @Override
     public void executerAction(Object cible) throws HearthstoneException {
         if (cible instanceof Heros) {
@@ -73,32 +91,56 @@ public class Sort extends Carte {
         }
     }
 
+    /**
+     * Execute la capcité du sort au debut du tour
+     */
     @Override
     public void executerEffetDebutTour() {
 
     }
 
+    /**
+     * Execute la capacité de sort des ça mise en jeu
+     * @param cible la carte elle meme
+     * @throws HearthstoneException
+     * @deprecated eviter de mettre une autre carte
+     */
     @Override
     public void executerEffetDebutMiseEnJeu(Object cible) throws HearthstoneException {
             this.capacite.executeEffetMiseEnjeu(this);
     }
 
+    /**
+     * Execute la capacité du sort au début du tour
+     * @param cible elle même
+     * @throws HearthstoneException
+     * @deprecated Eviter de mettre une autre carte
+     */
     @Override
     public void executerEffetDebutTour(Object cible) throws HearthstoneException {
         this.capacite.executerEffetDebutTour();
     }
 
+    /**
+     * Ce cas n'arrive jamais
+     */
     @Override
     public void executerEffetDisparition(Object cible) throws HearthstoneException {
         this.capacite.executeEffetDisparition(this);
     }
 
-
+    /**
+     *Ce cas n'arrive jamais
+     */
     @Override
     public void executerEffetFinTour() throws HearthstoneException {
         this.capacite.executerEffetFinTour();
     }
 
+    /**
+     * Retourne les parametre de la classe Sort
+     * @return String (chaine de caractères)
+     */
     @Override
     public String toString() {
         return "Sort{"+ this.getNomCarte() +" , Mana : "+this.getCout()+" , "+

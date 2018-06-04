@@ -1,4 +1,4 @@
-package jeu.Player;
+package jeu.Joueur;
 
 import jeu.Carte.ICarte;
 import jeu.Exception.HearthstoneException;

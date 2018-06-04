@@ -7,6 +7,12 @@ import jeu.Exception.HearthstoneException;
 import jeu.Heros.Heros;
 import jeu.Plateau.Plateau;
 
+/**
+ * Classe AttaqueCiblee reprente la capacité a attaquer une cible. Herite de Capacité
+ * @author  Rayan KOUSSA
+ * @version 0.1
+ * @see  Capacite
+ */
 public class AttaqueCiblee extends Capacite{
     int degat;
 
@@ -20,6 +26,11 @@ public class AttaqueCiblee extends Capacite{
         return degat;
     }
 
+    /**
+     * Permet d'attaquer un adversaire Heros ou serviteur
+     * @param cible serviteur ou heros
+     * @throws HearthstoneException
+     */
     public void executerAction(Object cible) throws HearthstoneException {
         Plateau plateau = Plateau.getInstance();
         if (cible == null){

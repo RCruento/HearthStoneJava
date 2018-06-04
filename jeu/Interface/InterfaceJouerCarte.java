@@ -29,7 +29,7 @@ public class InterfaceJouerCarte extends  Interface{
 
 
         while(!trouve){
-            for (ICarte carte : p.getJoueurCourant().getMain()) {
+            for (ICarte carte : p.getJoueurCourant().getMain())
                 if (carte.getNomCarte().contains(nomCarte)) {
                     if (carte instanceof Serviteur) {
                         trouve = true;
@@ -41,14 +41,15 @@ public class InterfaceJouerCarte extends  Interface{
                                 System.out.println("Carte sort d'attaque ? Saisir cible !");
                                 String nomCible = sc.nextLine();
                                 if (p.getAdversaire(p.getJoueurCourant()).getHeros().getNomHeros().contains(nomCible)) {
-                                   ((Sort) carte).getCapacite().executerAction(p.getAdversaire(p.getJoueurCourant()).getHeros());
+                                    ((Sort) carte).getCapacite().executerAction(p.getAdversaire(p.getJoueurCourant()).getHeros());
                                     trouve = true;
+                                    p.getJoueurCourant().perdreCarte(carte);
                                 }
                                 while (!trouve) {
                                     for (ICarte carteA : p.getAdversaire(p.getJoueurCourant()).getJeu()) {
                                         if (carteA.getNomCarte().contains((nomCible))) {
                                             ((Sort) carte).getCapacite().executerAction(carteA);
-                                            p.getJoueurCourant().getMain().remove(carte);
+                                            p.getJoueurCourant().perdreCarte(carte);
                                             trouve = true;
                                             break;
                                         }
@@ -59,20 +60,18 @@ public class InterfaceJouerCarte extends  Interface{
                                     }
                                 }
                             }
-                            if (((Sort) carte).getCapacite().getDescription().contains("a tous")){
+                            if (((Sort) carte).getCapacite().getDescription().contains("a tous")) {
                                 ((Sort) carte).getCapacite().executerEffetDebutTour();
-                                p.getJoueurCourant().getMain().remove(carte);
+                                p.getJoueurCourant().perdreCarte(carte);
                             }
-                            if(((Sort) carte).getCapacite().getDescription().contains("hero")){
+                            if (((Sort) carte).getCapacite().getDescription().contains("hero")) {
                                 ((Sort) carte).getCapacite().executerAction(p.getAdversaire(p.getJoueurCourant()).getHeros());
-                                p.getJoueurCourant().getMain().remove(carte);
+                                p.getJoueurCourant().perdreCarte(carte);
                             }
-                            ((Sort)carte).executerEffetDebutMiseEnJeu(carte);
+                            carte.executerEffetDebutMiseEnJeu((Sort) carte);
                         }
                     }
                 }
-
-            }
             if(!trouve){
                 System.out.println("Carte non trouvée ! Retour au menu");
                 trouve = true;

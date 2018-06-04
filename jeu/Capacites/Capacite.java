@@ -2,6 +2,11 @@ package jeu.Capacites;
 
 import java.util.Objects;
 
+/**
+ * Classe abstraite Capacité, represente les Capacités du jeux
+ * @author Rayan KOUSSA
+ * @version 0.1
+ */
 public abstract class Capacite implements ICapacite {
     private String nom;
     private String description;
