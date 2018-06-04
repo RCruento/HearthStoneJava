@@ -43,8 +43,9 @@ public class EffetPermanent extends Capacite {
 
     @Override
     public void executeEffetMiseEnjeu(Object cible) throws HearthstoneException {
-        if(Plateau.getInstance().getJoueurCourant().getJeu().size() != 0){
-            for (ICarte carte: Plateau.getInstance().getJoueurCourant().getJeu()
+        Plateau plateau = Plateau.getInstance();
+        if(plateau.getJoueurCourant().getJeu().size() != 0){
+            for (ICarte carte: plateau.getJoueurCourant().getJeu()
                  ) {
                 if(carte != cible) {
                     ((Serviteur) carte).bonusSante(this.bonusSante);

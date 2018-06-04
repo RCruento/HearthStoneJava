@@ -50,7 +50,7 @@ public class AttaqueTotale extends Capacite {
         for (ICarte carte : plateau.getAdversaire(plateau.getJoueurCourant()).getJeu()
                 ) {
             if (((Serviteur) carte).disparait()) {
-                plateau.getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu().remove(carte);
+                plateau.getAdversaire(plateau.getJoueurCourant()).getJeu().remove(carte);
             }
         }
     }

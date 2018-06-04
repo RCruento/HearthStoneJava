@@ -29,12 +29,11 @@ public class Main {
                 new AttaqueDuHeros("Tir Assuré", "Inflige 2 points de degats au heros adverse", 2));
 
         IJoueur Ray = new Joueur("Rayan", Jaina);
-        IJoueur Demos = new Joueur("Demos", Rexxar);
+        IJoueur Yuki = new Joueur("Yuki", Rexxar);
 
         plateau.ajouterJoueur(Ray);
-        plateau.ajouterJoueur(Demos);
+        plateau.ajouterJoueur(Yuki);
         plateau.setJoueurCourant(Ray);
-
         plateau.demarerPartie();
 
 
@@ -61,7 +60,7 @@ public class Main {
 
 
     public static String menu () {
-        ArrayList<String> menu = new ArrayList<String>();
+        ArrayList<String> menu = new ArrayList<>();
         Interface i = ihm;
 
 

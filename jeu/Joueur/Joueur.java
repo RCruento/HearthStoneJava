@@ -25,8 +25,8 @@ import java.util.Random;
 public class Joueur implements IJoueur {
     private String pseudo;
     private Heros heros;
-    private int mana = 0;
-    private int stockMana = 0;
+    private int mana = 10;
+    private int stockMana = 10;
     private ArrayList<ICarte> deck = new ArrayList<>();
     private ArrayList<ICarte> cartesMain= new ArrayList<>();
     private ArrayList<ICarte> cartesEnJeu = new ArrayList<>();
@@ -338,7 +338,7 @@ public class Joueur implements IJoueur {
      * Permet au jouer de selectionner une carte dans ça main et de la jouer
      * @param carte
      * @throws HearthstoneException
-     * @deprecated Ne sellectionnez pas une carte qui n'est pas en main
+     *
      */
     public void jouerCarte(ICarte carte) throws HearthstoneException {
         if (carte == null) {
@@ -362,7 +362,7 @@ public class Joueur implements IJoueur {
      * Supprime une carte de la main si elle est jouée ou supprime une carte du plateau si elle disparait
      * @param carte
      * @throws HearthstoneException
-     * @deprecated Eviter d'enlever une carte qui n'est pas jouée ou de supprimer une carte qui ne disparait pas
+     *
      */
     public void perdreCarte(ICarte carte) throws HearthstoneException {
         if(cartesEnJeu.contains(carte)){
@@ -419,8 +419,7 @@ public class Joueur implements IJoueur {
      * @param carte carte sur le plateau
      * @param cible cible a attaquer
      * @throws HearthstoneException
-     * @deprecated Utiliser des cartes sur le plateau et qui peuvent attaquer
-     *                     une cible valide le Heros ou une serviteur adverse
+     *
      */
     public void utiliserCarte(ICarte carte, Object cible) throws HearthstoneException {
         if(cartesEnJeu.contains(carte)){
@@ -437,7 +436,7 @@ public class Joueur implements IJoueur {
      * Permet au joueur d'ultiliser le pouvoir de son Heros
      * @param cible qui peut etre un serviteur ou l'adversaire
      * @throws HearthstoneException
-     * @deprecated la cible ne doit pas être (null, Plateau, Joueur, Sort)
+     *
      */
     public void utiliserPouvoir(Object cible) throws HearthstoneException {
         if(cible == null){

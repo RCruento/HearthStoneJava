@@ -142,7 +142,7 @@ public class Serviteur extends Carte {
      * Permet a un serviteur d'attaquer une cible
      * @param cible
      * @throws HearthstoneException en cas d'erreur sur la cible
-     * @deprecated cibler doit etre different de {null, Plateau, Sort }
+     *
      */
     @Override
     public void executerAction(Object cible) throws HearthstoneException {
@@ -214,7 +214,7 @@ public class Serviteur extends Carte {
      * Execute la capacité d'un serviteur dès ça mise en jeu
      * @param cible le serviteur lui meme
      * @throws HearthstoneException
-     * @deprecated Eviter d'utiliser une capacité nulle
+     *
      */
     @Override
     public void executerEffetDebutMiseEnJeu(Object cible) throws HearthstoneException {

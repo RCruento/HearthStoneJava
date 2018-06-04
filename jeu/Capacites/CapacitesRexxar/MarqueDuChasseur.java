@@ -1,6 +1,7 @@
 package jeu.Capacites.CapacitesRexxar;
 
 import jeu.Capacites.Capacite;
+import jeu.Carte.ICarte;
 import jeu.Carte.Serviteur;
 import jeu.Exception.HearthstoneException;
 import jeu.Plateau.Plateau;
@@ -20,16 +21,20 @@ public class MarqueDuChasseur extends Capacite {
      * Reduit les points de vie d'un serviteur a 1
      * @param cible serviteur
      * @throws HearthstoneException
-     * @deprecated ne cibler que des cartes serviteur
      */
     @Override
     public void executerAction(Object cible) throws HearthstoneException {
+        Plateau plateau = Plateau.getInstance();
         if(cible == null){
             throw new HearthstoneException("Aucune cible");
         }
         if(cible instanceof Serviteur){
-            if(Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu().contains(cible)){
-                ((Serviteur) Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getCarteEnJeu( ((Serviteur) cible).getNomCarte() )).setSante(1);
+            if(plateau.getAdversaire(plateau.getJoueurCourant()).getJeu().contains(cible)){
+                for(ICarte carteCible : plateau.getAdversaire(plateau.getJoueurCourant()).getJeu()){
+                    if(carteCible.getNomCarte().equals(((Serviteur) cible).getNomCarte())) {
+                        ((Serviteur) plateau.getAdversaire(plateau.getJoueurCourant()).getCarteEnJeu((carteCible).getNomCarte())).setSante(1);
+                    }
+                }
             }
         }else{
             throw new HearthstoneException("Tu ne peux cibler qu'un serviteur et rien d'autre");

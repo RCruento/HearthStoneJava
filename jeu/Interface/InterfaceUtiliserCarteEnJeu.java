@@ -5,16 +5,33 @@ import jeu.Exception.HearthstoneException;
 import jeu.Plateau.IPlateau;
 import java.util.Scanner;
 
+/**
+ * Classe InterfaceUtiliserCarteEnJeu permet au joueur d'utiliser une carte en la choisissant
+ * Hérite d'Interface
+ * @author Rayan KOUSSA
+ * @version 0.1
+ * @see Interface
+ */
 public class InterfaceUtiliserCarteEnJeu extends Interface {
     public InterfaceUtiliserCarteEnJeu(Interface suivant) {
         super(suivant);
     }
 
+    /**
+     * Permet de verifier si le choix est correcte
+     * @param choix pour finir le tour
+     * @return true si correcte, false sinon
+     */
     @Override
     public boolean saitInteragir(String choix) {
         return getDescription().equals(choix);
     }
 
+    /**
+     * permet d'executer le choix Utiliser une carte
+     * @param p plateau
+     * @throws HearthstoneException
+     */
     @Override
     public void executerRequete(IPlateau p) throws HearthstoneException {
         boolean trouveCarte = false;
@@ -101,6 +118,10 @@ public class InterfaceUtiliserCarteEnJeu extends Interface {
         }*/
     }
 
+    /**
+     * Permet d'afficher le choix
+     * @return "Utiliser carte en jeux"
+     */
     @Override
     public String getDescription() {
         return "Utiliser carte en jeux";

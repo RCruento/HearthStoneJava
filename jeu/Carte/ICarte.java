@@ -3,6 +3,7 @@ package jeu.Carte;
 import jeu.Exception.HearthstoneException;
 
 import jeu.Joueur.IJoueur;
+
 /**
  * Interface ICarte
  * Inteface classe qui a les methodes suivantes
@@ -22,9 +23,6 @@ public interface ICarte  {
     boolean disparait();
 
 
-
-
-
     /**
      * Permet a un Serviteur d'attaquer une cible
      * Permet a une carte d'utiliser ça capacité contre une cible
@@ -34,16 +32,10 @@ public interface ICarte  {
     void    executerAction(Object cible) throws HearthstoneException;
 
 
-
-
-
     /**
      * Permet d'utiliser la capacité d'un serviteur a chaque début de tour
      */
     void    executerEffetDebutTour();
-
-
-
 
 
     /**
@@ -54,18 +46,12 @@ public interface ICarte  {
     void    executerEffetDebutMiseEnJeu(Object cible)throws HearthstoneException;
 
 
-
-
-
     /**
      * Permet d'utiliser la capacité d'un serviteur a sa mort
      * @param cible
      * @throws HearthstoneException
      */
     void    executerEffetDisparition(Object cible)throws HearthstoneException;
-
-
-
 
 
     /**
@@ -75,9 +61,6 @@ public interface ICarte  {
     void    executerEffetFinTour()throws HearthstoneException;
 
 
-
-
-
     /**
      * Permet de connaitre le cout en mana d'une carte
      * @return cout
@@ -85,20 +68,11 @@ public interface ICarte  {
     int     getCout();
 
 
-
-
-
-
     /**
      * Permet de connaitre le nom d'une carte
      * @return
      */
     String  getNomCarte();
-
-
-
-
-
 
 
     /**

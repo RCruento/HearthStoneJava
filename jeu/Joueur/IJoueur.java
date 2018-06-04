@@ -22,7 +22,7 @@ public interface IJoueur {
      * @param nomCarteJeu bout du nom de la carte
      * @return ICarte
      * @throws HearthstoneException
-     * @deprecated Eviter d'entrer le nom d'une carte qui n'est pas sur le plateau
+     *
      */
     ICarte getCarteEnJeu(String nomCarteJeu) throws HearthstoneException;
 
@@ -33,7 +33,7 @@ public interface IJoueur {
      * @param nomCarteMain bout du nom de la carte
      * @return ICarte
      * @throws HearthstoneException
-     * @deprecated Eviter d'entrer le nom d'une carte qui n'est pas dans la main
+     *
      */
     ICarte getCarteEnMain(String nomCarteMain) throws HearthstoneException;
 
@@ -81,7 +81,10 @@ public interface IJoueur {
     int getMana();
 
 
-
+    /**
+     * Permet de modifier le mana d'un joueur
+     */
+    void setMana(int mana);
 
     /**
      * Permet de connaitre le pseudo du joueur
@@ -112,7 +115,7 @@ public interface IJoueur {
      * Permet au jouer de selectionner une carte dans ça main et de la jouer
      * @param carte
      * @throws HearthstoneException
-     * @deprecated Ne sellectionnez pas une carte qui n'est pas en main
+     *
      */
     void jouerCarte(ICarte carte) throws HearthstoneException;
 
@@ -122,7 +125,7 @@ public interface IJoueur {
      * Supprime une carte de la main si elle est jouée ou supprime une carte du plateau si elle disparait
      * @param carte
      * @throws HearthstoneException
-     * @deprecated Eviter d'enlever une carte qui n'est pas jouée ou de supprimer une carte qui ne disparait pas
+     *
      */
     void perdreCarte(ICarte carte) throws HearthstoneException;
 
@@ -147,8 +150,7 @@ public interface IJoueur {
      * @param carte carte sur le plateau
      * @param cible cible a attaquer
      * @throws HearthstoneException
-     * @deprecated Utiliser des cartes sur le plateau et qui peuvent attaquer
-     *                     une cible valide le Heros ou une serviteur adverse
+     *
      */
     void utiliserCarte(ICarte carte, Object cible) throws HearthstoneException;
 
@@ -158,7 +160,6 @@ public interface IJoueur {
      * Permet au joueur d'ultiliser le pouvoir de son Heros
      * @param cible qui peut etre un serviteur ou l'adversaire
      * @throws HearthstoneException
-     * @deprecated la cible ne doit pas être (null, Plateau, Joueur, Sort)
      */
     void utiliserPouvoir(Object cible) throws HearthstoneException;
 

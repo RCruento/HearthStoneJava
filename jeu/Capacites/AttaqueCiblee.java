@@ -55,7 +55,7 @@ public class AttaqueCiblee extends Capacite{
             }
         }
         if(cible instanceof Serviteur){
-            if(Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu().contains(cible)){
+            if(plateau.getAdversaire(plateau.getJoueurCourant()).getJeu().contains(cible)){
                 if(((Serviteur) cible).getProvocation()){
                     ((Serviteur) cible).blesserServiteur(this.degat);
                 }

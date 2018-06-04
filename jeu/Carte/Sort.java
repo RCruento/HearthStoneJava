@@ -45,7 +45,7 @@ public class Sort extends Carte {
      * Si le sort est un sort de degat, la carte attaque une cible
      * @param cible serviteur sur le plateau ou Heros
      * @throws HearthstoneException
-     * @deprecated Eviter de cibler {null, Plateau, carte en main, carte dans le deck}
+     *
      */
     @Override
     public void executerAction(Object cible) throws HearthstoneException {
@@ -103,7 +103,7 @@ public class Sort extends Carte {
      * Execute la capacité de sort des ça mise en jeu
      * @param cible la carte elle meme
      * @throws HearthstoneException
-     * @deprecated eviter de mettre une autre carte
+     *
      */
     @Override
     public void executerEffetDebutMiseEnJeu(Object cible) throws HearthstoneException {
@@ -114,7 +114,7 @@ public class Sort extends Carte {
      * Execute la capacité du sort au début du tour
      * @param cible elle même
      * @throws HearthstoneException
-     * @deprecated Eviter de mettre une autre carte
+     *
      */
     @Override
     public void executerEffetDebutTour(Object cible) throws HearthstoneException {

@@ -62,7 +62,7 @@ public final class Provocation extends Capacite {
      * Permet a la carte qui a cette capacité de proteger les cartes sur le plateau et le heros
      * @param cible la carte qui a cette capacité
      * @throws HearthstoneException
-     * @deprecated Utiliser cette methode sur la carte qui a cette capacité
+     *
      */
     @Override
     public void executeEffetMiseEnjeu(Object cible) throws HearthstoneException {

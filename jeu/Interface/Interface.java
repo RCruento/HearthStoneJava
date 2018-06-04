@@ -3,6 +3,15 @@ package jeu.Interface;
 import jeu.Exception.HearthstoneException;
 import jeu.Plateau.IPlateau;
 
+/**
+ * Classe abstraite Inteface permet de communiquer
+ * avec les joueurs à l'aide du clavier
+ * @author Rayan KOUSSA
+ * @version 0.1
+ */
+
+
+
 public abstract class Interface {
     private Interface suivant = null;
 
@@ -21,6 +30,12 @@ public abstract class Interface {
 
     public abstract String getDescription();
 
+    /**
+     * Permet de lancer L'interaction avec le joueur
+     * @param choix choix du joueur
+     * @param p plateau
+     * @throws HearthstoneException
+     */
     public void interagir(String choix, IPlateau p) throws HearthstoneException {
         if (saitInteragir(choix))
             executerRequete(p);

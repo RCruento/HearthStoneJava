@@ -12,6 +12,6 @@ import jeu.Plateau.Plateau;
  */
 public class Golemisation extends InvocationDeServiteur {
     public Golemisation() throws HearthstoneException {
-        super("Aucune", null, new Serviteur(Plateau.getInstance().getJoueurCourant(), "Golem endomagé",2,1), 1);
+        super("Golem endomagé", "Invoque un golem endomagé 2/1", new Serviteur(Plateau.getInstance().getJoueurCourant(), "Golem endomagé",2,1), 1);
     }
 }

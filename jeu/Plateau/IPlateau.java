@@ -1,5 +1,6 @@
 package jeu.Plateau;
 
+import jeu.Carte.ICarte;
 import jeu.Exception.HearthstoneException;
 import jeu.Joueur.IJoueur;
 
@@ -24,7 +25,6 @@ public interface IPlateau {
     void demarerPartie() throws HearthstoneException;
 
 
-
     /**
      * Verifie si une partie a commencée
      * @return true si elle a commencée, false sinon
@@ -32,14 +32,11 @@ public interface IPlateau {
     boolean estDemaree();
 
 
-
     /**
      * Le joueur en parametre gagne la partie
      * @param joueur Joueur courant
      */
     void gagnerPartie(IJoueur joueur);
-
-
 
 
     /**

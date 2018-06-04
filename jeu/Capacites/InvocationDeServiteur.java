@@ -58,6 +58,7 @@ public abstract class InvocationDeServiteur extends Capacite {
     public void executeEffetMiseEnjeu(Object cible) throws HearthstoneException {
         Plateau plateau = Plateau.getInstance();
         for(int i=0; i<this.nombreInvocation; i++){
+            plateau.getJoueurCourant().getMain().add(this.invocation);
             plateau.getJoueurCourant().jouerCarte(this.invocation);
         }
         if(cible instanceof Sort){
