@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="HearStone:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/HearStone_jar</output-path>
+    <root id="archive" name="HearStone.jar">
+      <element id="module-output" name="HearStone" />
+    </root>
+  </artifact>
+</component>

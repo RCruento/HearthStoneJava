@@ -8,11 +8,13 @@ import jeu.Plateau.IPlateau;
 import jeu.Plateau.Plateau;
 import jeu.Joueur.IJoueur;
 import jeu.Joueur.Joueur;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+/**
+ * Classe Main, permet de lancer le programme
+ * @author Rayan KOUSSA
+ */
 public class Main {
     public static Interface ihm = null;
 
@@ -90,6 +92,7 @@ public class Main {
 
     public static Interface initialiaserInterface () {
         Interface monInterface = null;
+        monInterface = new InterfaceQuitterLeJeu(monInterface);
         monInterface = new InterfaceUtiliserPouvoirHero(monInterface);
         monInterface = new InterfaceUtiliserCarteEnJeu(monInterface);
         monInterface = new InterfaceJouerCarte(monInterface);
