@@ -20,7 +20,7 @@ public class Plateau implements IPlateau {
     /**
      * Singleton
      */
-    private static Plateau INSTANCE = new Plateau();
+    private static Plateau INSTANCE = null;
 
     /**
      * Point d'accès pour l'instance unique du singleton
